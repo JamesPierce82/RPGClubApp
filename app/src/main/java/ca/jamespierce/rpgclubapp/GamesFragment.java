@@ -32,6 +32,7 @@ public class GamesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ViewPager viewPager;
+    CircleIndicator indicator;
     private SectionPagerAdapter sectionPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
@@ -78,7 +79,9 @@ public class GamesFragment extends Fragment {
         }
         sectionPagerAdapter = new SectionPagerAdapter((getChildFragmentManager()));
         viewPager = (ViewPager) view.findViewById(R.id.gamecontent);
+        indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewPager.setAdapter(sectionPagerAdapter);
+        indicator.setViewPager(viewPager);
         if(savedInstanceState == null) {
             Snackbar.make(view, "Swipe left to see more content", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
