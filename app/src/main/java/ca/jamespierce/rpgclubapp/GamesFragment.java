@@ -76,6 +76,9 @@ public class GamesFragment extends Fragment {
         if(fab.isShown()) {
             fab.hide();
         }
+        sectionPagerAdapter = new SectionPagerAdapter((getChildFragmentManager()));
+        viewPager = (ViewPager) view.findViewById(R.id.gamecontent);
+        viewPager.setAdapter(sectionPagerAdapter);
         if(savedInstanceState == null) {
             Snackbar.make(view, "Swipe left to see more content", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
@@ -92,17 +95,17 @@ public class GamesFragment extends Fragment {
         public Fragment getItem(int position) {
             switch(position) {
                 case 0:
-                    return GameFragment.newInstance("Test1", "Hello");
+                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
                 case 1:
-                    return GameFragment.newInstance("Test2", "Hello");
+                    return GameFragment.newInstance("Test2", "Hello", R.drawable.dice);
                 case 2:
-                    return GameFragment.newInstance("Test3", "Hello");
+                    return GameFragment.newInstance("Test3", "Hello", R.drawable.dice);
                 case 3:
-                    return GameFragment.newInstance("Test4", "Hello");
+                    return GameFragment.newInstance("Test4", "Hello", R.drawable.dice);
                 case 4:
-                    return GameFragment.newInstance("Test5", "Hello");
+                    return GameFragment.newInstance("Test5", "Hello", R.drawable.dice);
                 default:
-                    return GameFragment.newInstance("Testdefault", "Hello");
+                    return GameFragment.newInstance("Testdefault", "Hello", R.drawable.dice);
             }
         }
 

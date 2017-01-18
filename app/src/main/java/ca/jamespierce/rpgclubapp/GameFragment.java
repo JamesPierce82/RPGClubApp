@@ -89,7 +89,6 @@ public class GameFragment extends Fragment {
             image.setImageResource(mParam3);
         }
 
-
         return view;
     }
 
