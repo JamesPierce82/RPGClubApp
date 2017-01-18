@@ -3,6 +3,7 @@ package ca.jamespierce.rpgclubapp;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +77,10 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
-
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        if(fab.isShown()){
+            fab.hide();
+        }
         //*** THIS SHOULD BE A RECYCLER VIEW BASED ON THE PREMISE OF A CHAT WINDOW
         // Links the ListView programmatically to the list variable
         list = (ListView) view.findViewById(R.id.chatList);
