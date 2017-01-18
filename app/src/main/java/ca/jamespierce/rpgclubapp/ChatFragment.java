@@ -7,6 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,6 +32,11 @@ public class ChatFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //Declare the ListView
+    ListView list;
+
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +75,67 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        //*** THIS SHOULD BE A RECYCLER VIEW BASED ON THE PREMISE OF A CHAT WINDOW
+        // Links the ListView programmatically to the list variable
+        list = (ListView) view.findViewById(R.id.chatList);
+        // Create an ArrayList that holds messages
+        final ArrayList<Message> messageList = new ArrayList<Message>();
+
+        // Add messages to the arraylist
+        // Passes Name, Time set, Message, and the ID of the image to be used as an avatar
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+
+        final CustomAdapter adapter = new CustomAdapter(getContext(), messageList);
+
+        // Set the adapter for the list displayed in the GUI
+        list.setAdapter(adapter);
+        // Unlike the other apps we have done, This one does not require a onclick listener currently.
+        // It does not need to perform any actions when touching the message.
+        // *** ADD IN SNACKBAR MESSAGE WHEN TAPPING TO INDICATE FUTURE FUNCTIONALITY
+
+        return view;
+    }
+
+    // Create the CustomAdapter class
+    public class CustomAdapter extends ArrayAdapter<Message> {
+
+        public CustomAdapter(Context context, ArrayList<Message> items) {
+            super(context, 0, items);
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent){
+            Message item = getItem(position);
+
+            if(convertView == null){
+                convertView =
+                        LayoutInflater.from(getContext()).inflate(
+                                R.layout.item_view, parent, false);
+            }
+
+            // Set the text values for the message being displayed
+            TextView name = (TextView) convertView.findViewById(R.id.name);
+            name.setText(item.getName());
+            TextView time = (TextView) convertView.findViewById(R.id.time);
+            time.setText(item.getTimeSent());
+            TextView message = (TextView) convertView.findViewById(R.id.message);
+
+            // Sets the avatar using the resource id of the drawable image stored in the message
+            ImageView avatar = (ImageView)convertView.findViewById(R.id.avatar);
+            avatar.setImageResource(item.getAvatar());
+
+            return  convertView;
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
