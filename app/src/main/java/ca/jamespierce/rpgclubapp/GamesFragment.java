@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import me.relex.circleindicator.CircleIndicator;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,9 +84,7 @@ public class GamesFragment extends Fragment {
         indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewPager.setAdapter(sectionPagerAdapter);
         indicator.setViewPager(viewPager);
-        if(savedInstanceState == null) {
-            Snackbar.make(view, "Swipe left to see more content", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-        }
+        
         return view;
     }
 
@@ -97,18 +97,25 @@ public class GamesFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             switch(position) {
+                /* Using the Looping ViewPager from https://github.com/ongakuer/CircleIndicator
+                 * This won't go to case 0. It starts at case 1 and rotates from there.
+                 * Keeping case 0 in case anything weird happens and it pulls case 0 up for some reason.
+                 * Default case should be the same as case 1, as the reset first loads the default and THEN loads case 1.
+                 * Change this to fix weird loading issues.*/
                 case 0:
-                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("Test0", "Hello", R.drawable.dice);
                 case 1:
-                    return GameFragment.newInstance("Test2", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
                 case 2:
-                    return GameFragment.newInstance("Test3", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("Test2", "Hello", R.drawable.dice);
                 case 3:
-                    return GameFragment.newInstance("Test4", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("Test3", "Hello", R.drawable.dice);
                 case 4:
+                    return GameFragment.newInstance("Test4", "Hello", R.drawable.dice);
+                case 5:
                     return GameFragment.newInstance("Test5", "Hello", R.drawable.dice);
                 default:
-                    return GameFragment.newInstance("Testdefault", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
             }
         }
 

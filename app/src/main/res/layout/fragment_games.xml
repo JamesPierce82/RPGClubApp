@@ -1,16 +1,25 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ca.jamespierce.rpgclubapp.GamesFragment">
 
-    <android.support.v4.view.ViewPager
+    <com.imbryk.viewPager.LoopViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gamecontent"></android.support.v4.view.ViewPager>
+        android:id="@+id/gamecontent"/>
+
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
-        android:layout_height="48dp"/>
+        android:layout_height="48dp"
+        app:ci_drawable="@drawable/d20"
+        app:ci_orientation="horizontal"
+        app:ci_height="8dp"
+        android:layout_gravity="bottom"
+        app:ci_width="8dp">
+
+    </me.relex.circleindicator.CircleIndicator>
 
 </FrameLayout>
