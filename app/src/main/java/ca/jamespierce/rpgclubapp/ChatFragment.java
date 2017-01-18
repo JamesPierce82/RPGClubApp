@@ -85,15 +85,19 @@ public class ChatFragment extends Fragment {
 
         // Add messages to the arraylist
         // Passes Name, Time set, Message, and the ID of the image to be used as an avatar
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
         messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
+        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
 
         final CustomAdapter adapter = new CustomAdapter(getContext(), messageList);
 
@@ -128,6 +132,7 @@ public class ChatFragment extends Fragment {
             TextView time = (TextView) convertView.findViewById(R.id.time);
             time.setText(item.getTimeSent());
             TextView message = (TextView) convertView.findViewById(R.id.message);
+            message.setText(item.getContent());
 
             // Sets the avatar using the resource id of the drawable image stored in the message
             ImageView avatar = (ImageView)convertView.findViewById(R.id.avatar);

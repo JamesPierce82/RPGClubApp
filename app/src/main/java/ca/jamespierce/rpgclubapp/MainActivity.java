@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             tran.replace(R.id.content_main, new ClubInfoFragment());
             tran.commit();
+        } else if (id == R.id.nav_manage) {
+            tran.replace(R.id.content_main, new MainFragment());
+            tran.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
