@@ -8,6 +8,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/chatList"></ListView>
+    <!-- There will be a text field going here eventually.
+        Focusing on finishing the app itself before adding the
+        "special" features. -->
 
 
 </LinearLayout>
