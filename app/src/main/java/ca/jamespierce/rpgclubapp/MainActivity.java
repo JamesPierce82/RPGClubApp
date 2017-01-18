@@ -1,5 +1,6 @@
 package ca.jamespierce.rpgclubapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,
+                    MainFragment.OnFragmentInteractionListener,
+                    ChatFragment.OnFragmentInteractionListener,
+                    ClubInfoFragment.OnFragmentInteractionListener,
+                    GamesFragment.OnFragmentInteractionListener{
 
     FragmentManager fm = getSupportFragmentManager();
     @Override
@@ -25,6 +30,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(savedInstanceState == null){
+            FragmentTransaction tran = fm.beginTransaction();
+            tran.replace(R.id.content_main, new MainFragment());
+            tran.commit();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,21 +95,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentTransaction tran = fm.beginTransaction();
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            tran.replace(R.id.content_main, new ChatFragment());
+            tran.commit();
         } else if (id == R.id.nav_gallery) {
-
+            tran.replace(R.id.content_main, new GamesFragment());
+            tran.commit();
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            tran.replace(R.id.content_main, new ClubInfoFragment());
+            tran.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void onFragmentInteraction(Uri uri){
+
+
     }
 }
