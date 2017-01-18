@@ -1,5 +1,6 @@
 # RPGClubApp
 Role Playing Game Club App for Android III
+
 Set name: `git config --global user.name` `<<<YOUR NAME HERE>>>`
 
 Set email: `git config --global user.email` `<<<YOUR EMAIL HERE>>>`
