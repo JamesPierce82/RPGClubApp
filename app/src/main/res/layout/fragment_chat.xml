@@ -7,7 +7,31 @@
 <ListView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/chatList"></ListView>
+    android:id="@+id/chatList"
+    android:layout_weight="1"></ListView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editMessage"
+            android:layout_weight="4" />
+
+        <Button
+            android:text="Send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/sendButton"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     <!-- There will be a text field going here eventually.
         Focusing on finishing the app itself before adding the
         "special" features. -->
