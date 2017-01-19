@@ -89,19 +89,19 @@ public class ChatFragment extends Fragment {
 
         // Add messages to the arraylist
         // Passes Name, Time set, Message, and the ID of the image to be used as an avatar
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset", R.drawable.dice));
-        messageList.add(new Message("James", "2017-15-01 12:03pm", "Hello this is a tset, I need this to say a lot more than it does currently. This really needs to run off the page so that I can see if it properly wraps each message.", R.drawable.dice));
+        messageList.add(new Message("James", "Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", R.drawable.dice));
+        messageList.add(new Message("Bob", "Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides cub stuff?", R.drawable.dice));
+        messageList.add(new Message("James", "Jan 12, 2017 2:23pm", "Sure, why not! Just keep it appropriate.", R.drawable.dice));
+        messageList.add(new Message("Charlie", "Jan 13, 2017 9:54am", "When is the next Orbs and Orcs night?", R.drawable.dice));
+        messageList.add(new Message("James", "Jan 13, 2017 10:27pm", "Thats a week from tuesday, starting at 7pm. We usually go until 1 or 2 am so I hope you're up for a late night and early morning! I know you have class at 8am the next day.", R.drawable.dice));
+        messageList.add(new Message("Charlie", "Jan 13, 2017 10:33pm", "Awesome. Put me down as being there, I'll bring some nacho dip.", R.drawable.dice));
+        messageList.add(new Message("Bob", "Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", R.drawable.dice));
+        messageList.add(new Message("Charlie", "Jan 15, 2017 9:44am", "It was supposed to be ue thursday, but only 'tentatively'. He hasn't said for sure yet.", R.drawable.dice));
+        messageList.add(new Message("Bob", "Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", R.drawable.dice));
+        messageList.add(new Message("Emily", "yesterday at 12:03pm", "Do you guys still play Trailspotter?", R.drawable.dice));
+        messageList.add(new Message("James", "yesterday at 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.dice));
+        messageList.add(new Message("Emily", "yesterday at 18 12:11pm", "Okay cool. When do you guys play that?", R.drawable.dice));
+        messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.dice));
 
         final CustomAdapter adapter = new CustomAdapter(getContext(), messageList);
 
