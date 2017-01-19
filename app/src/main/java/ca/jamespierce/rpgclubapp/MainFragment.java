@@ -3,6 +3,7 @@ package ca.jamespierce.rpgclubapp;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +65,11 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        // I want this to make sure this ALWAYS runs, as it doesn't seem to run in an if statement on launch
+        fab.hide();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
