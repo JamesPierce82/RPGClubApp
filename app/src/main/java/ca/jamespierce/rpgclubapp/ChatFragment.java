@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -34,9 +37,7 @@ public class ChatFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    //Declare the ListView
-    ListView list;
-
+    RecyclerView rvMessages;
 
 
     private OnFragmentInteractionListener mListener;
@@ -78,73 +79,42 @@ public class ChatFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
-        if(fab.isShown()){
-            fab.hide();
-        }
-        //*** THIS SHOULD BE A RECYCLER VIEW BASED ON THE PREMISE OF A CHAT WINDOW
-        // Links the ListView programmatically to the list variable
-        list = (ListView) view.findViewById(R.id.chatList);
+        fab.hide();
+
+        rvMessages = (RecyclerView) view.findViewById(R.id.chatList);
+
         // Create an ArrayList that holds messages
         final ArrayList<Message> messageList = new ArrayList<Message>();
 
         // Add messages to the arraylist
         // Passes Name, Time set, Message, and the ID of the image to be used as an avatar
-        messageList.add(new Message("James", "Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", R.drawable.dice));
-        messageList.add(new Message("Bob", "Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides cub stuff?", R.drawable.dice));
-        messageList.add(new Message("James", "Jan 12, 2017 2:23pm", "Sure, why not! Just keep it appropriate.", R.drawable.dice));
-        messageList.add(new Message("Charlie", "Jan 13, 2017 9:54am", "When is the next Orbs and Orcs night?", R.drawable.dice));
-        messageList.add(new Message("James", "Jan 13, 2017 10:27pm", "Thats a week from tuesday, starting at 7pm. We usually go until 1 or 2 am so I hope you're up for a late night and early morning! I know you have class at 8am the next day.", R.drawable.dice));
-        messageList.add(new Message("Charlie", "Jan 13, 2017 10:33pm", "Awesome. Put me down as being there, I'll bring some nacho dip.", R.drawable.dice));
-        messageList.add(new Message("Bob", "Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", R.drawable.dice));
-        messageList.add(new Message("Charlie", "Jan 15, 2017 9:44am", "It was supposed to be ue thursday, but only 'tentatively'. He hasn't said for sure yet.", R.drawable.dice));
-        messageList.add(new Message("Bob", "Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", R.drawable.dice));
-        messageList.add(new Message("Emily", "yesterday at 12:03pm", "Do you guys still play Trailspotter?", R.drawable.dice));
-        messageList.add(new Message("James", "yesterday at 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.dice));
-        messageList.add(new Message("Emily", "yesterday at 18 12:11pm", "Okay cool. When do you guys play that?", R.drawable.dice));
-        messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.dice));
+        messageList.add(new Message("James", "Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", R.drawable.james));
+        messageList.add(new Message("Bob", "Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides cub stuff?", R.drawable.bob));
+        messageList.add(new Message("James", "Jan 12, 2017 2:23pm", "Sure, why not! Just keep it appropriate.", R.drawable.james));
+        messageList.add(new Message("Charlie", "Jan 13, 2017 9:54am", "When is the next Orbs and Orcs night?", R.drawable.charlie));
+        messageList.add(new Message("James", "Jan 13, 2017 10:27pm", "Thats a week from tuesday, starting at 7pm. We usually go until 1 or 2 am so I hope you're up for a late night and early morning! I know you have class at 8am the next day.", R.drawable.james));
+        messageList.add(new Message("Charlie", "Jan 13, 2017 10:33pm", "Awesome. Put me down as being there, I'll bring some nacho dip.", R.drawable.charlie));
+        messageList.add(new Message("Bob", "Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", R.drawable.bob));
+        messageList.add(new Message("Charlie", "Jan 15, 2017 9:44am", "It was supposed to be ue thursday, but only 'tentatively'. He hasn't said for sure yet.", R.drawable.charlie));
+        messageList.add(new Message("Bob", "Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", R.drawable.bob));
+        messageList.add(new Message("Emily", "yesterday at 12:03pm", "Do you guys still play Trailspotter?", R.drawable.emily));
+        messageList.add(new Message("James", "yesterday at 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.james));
+        messageList.add(new Message("Emily", "yesterday at 18 12:11pm", "Okay cool. When do you guys play that?", R.drawable.emily));
+        messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
 
-        final CustomAdapter adapter = new CustomAdapter(getContext(), messageList);
 
-        // Set the adapter for the list displayed in the GUI
-        list.setAdapter(adapter);
+        MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
+
+        // Attach the adapter to the recyclerview to populate items
+        rvMessages.setAdapter(adapter);
+
+        // Set layout manager to position the items
+        rvMessages.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         // Unlike the other apps we have done, This one does not require a onclick listener currently.
         // It does not need to perform any actions when touching the message.
-        // *** ADD IN SNACKBAR MESSAGE WHEN TAPPING TO INDICATE FUTURE FUNCTIONALITY
 
         return view;
-    }
-
-    // Create the CustomAdapter class
-    public class CustomAdapter extends ArrayAdapter<Message> {
-
-        public CustomAdapter(Context context, ArrayList<Message> items) {
-            super(context, 0, items);
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent){
-            Message item = getItem(position);
-
-            if(convertView == null){
-                convertView =
-                        LayoutInflater.from(getContext()).inflate(
-                                R.layout.item_view, parent, false);
-            }
-
-            // Set the text values for the message being displayed
-            TextView name = (TextView) convertView.findViewById(R.id.name);
-            name.setText(item.getName());
-            TextView time = (TextView) convertView.findViewById(R.id.time);
-            time.setText(item.getTimeSent());
-            TextView message = (TextView) convertView.findViewById(R.id.message);
-            message.setText(item.getContent());
-
-            // Sets the avatar using the resource id of the drawable image stored in the message
-            ImageView avatar = (ImageView)convertView.findViewById(R.id.avatar);
-            avatar.setImageResource(item.getAvatar());
-
-            return  convertView;
-        }
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

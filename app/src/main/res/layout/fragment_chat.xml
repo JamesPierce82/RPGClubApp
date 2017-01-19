@@ -4,12 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ca.jamespierce.rpgclubapp.ChatFragment">
-<ListView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/chatList"
-    android:layout_weight="1"></ListView>
-
+<!--<ListView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/chatList"-->
+    <!--android:layout_weight="1"></ListView>-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chatList"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"></android.support.v7.widget.RecyclerView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -22,7 +32,9 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editMessage"
-            android:layout_weight="4" />
+            android:layout_weight="4"
+            android:scrollbars="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true" />
 
         <Button
             android:text="Send"
