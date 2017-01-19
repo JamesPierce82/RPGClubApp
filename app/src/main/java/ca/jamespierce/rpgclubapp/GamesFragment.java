@@ -99,23 +99,24 @@ public class GamesFragment extends Fragment {
             switch(position) {
                 /* Using the Looping ViewPager from https://github.com/ongakuer/CircleIndicator
                  * This won't go to case 0. It starts at case 1 and rotates from there.
-                 * Keeping case 0 in case anything weird happens and it pulls case 0 up for some reason.
+                 * case 0 is the same as case 5 so that when it loops it properly pulls up the case 5 content without
+                 * having a weird loading glitch.
                  * Default case should be the same as case 1, as the reset first loads the default and THEN loads case 1.
                  * Change this to fix weird loading issues.*/
                 case 0:
-                    return GameFragment.newInstance("Test0", "Hello", R.drawable.dice);
-                case 1:
-                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
-                case 2:
-                    return GameFragment.newInstance("Test2", "Hello", R.drawable.dice);
-                case 3:
-                    return GameFragment.newInstance("Test3", "Hello", R.drawable.dice);
-                case 4:
-                    return GameFragment.newInstance("Test4", "Hello", R.drawable.dice);
                 case 5:
-                    return GameFragment.newInstance("Test5", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("DarkWalk", "A stealth based game where you take missions from contractors and attempt to complete them. This plays very different from the smash-em up games at the top of this list.", R.drawable.dice);
+                case 1:
+                case 6:
+                    return GameFragment.newInstance("Orbs and Orcs", "This is a game that revolves around party play, dungeon diving, and ruining the lives of all the non-fairy like creatures in the world of Karrova.", R.drawable.dice);
+                case 2:
+                    return GameFragment.newInstance("Trailspotter", "Similar in genre to Orbs and Orcs, this game allows players to run around the world of Rokavva and do lots and lots of fetch quests. It's like an MMORPG, but with 5 people in person!", R.drawable.dice);
+                case 3:
+                    return GameFragment.newInstance("Call to ChooChoo", "This is a thriller/horror style game where the players band together against insanity, and battle the monsters of the night. All games must take place on a train.", R.drawable.dice);
+                case 4:
+                    return GameFragment.newInstance("DESTINY", "This is a game that centers around beating things up. Every character has a predetermined destiny, its up to the players to fulfill it... or die in the trying!", R.drawable.dice);
                 default:
-                    return GameFragment.newInstance("Test1", "Hello", R.drawable.dice);
+                    return GameFragment.newInstance("This should never show up", "Or this", R.drawable.dice);
             }
         }
 

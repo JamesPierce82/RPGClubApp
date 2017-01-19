@@ -79,8 +79,8 @@ public class GameFragment extends Fragment {
             text.setText(mParam1);
         }
         if(mParam2 != null) {
-            TextView text = (TextView) view.findViewById(R.id.description);
-            text.setText(mParam2);
+            TextView gamedescription = (TextView) view.findViewById(R.id.gamedescription);
+            gamedescription.setText("test");
         }
         // Not sure how to best deal with this, 0 seems to work but leaves
         // the rare case where it could fail.
