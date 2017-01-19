@@ -96,17 +96,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentTransaction tran = fm.beginTransaction();
-        if (id == R.id.nav_camera) {
-            tran.replace(R.id.content_main, new ChatFragment());
+        if (id == R.id.nav_home) {
+            tran.replace(R.id.content_main, new MainFragment());
             tran.commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_games) {
             tran.replace(R.id.content_main, new GamesFragment());
             tran.commit();
-        } else if (id == R.id.nav_slideshow) {
-            tran.replace(R.id.content_main, new ClubInfoFragment());
+        } else if (id == R.id.nav_chat) {
+            tran.replace(R.id.content_main, new ChatFragment());
             tran.commit();
-        } else if (id == R.id.nav_manage) {
-            tran.replace(R.id.content_main, new MainFragment());
+        } else if (id == R.id.nav_about) {
+            tran.replace(R.id.content_main, new ClubInfoFragment());
             tran.commit();
         }
 
