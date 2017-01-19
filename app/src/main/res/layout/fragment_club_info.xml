@@ -8,6 +8,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="This is a stub fragment for now. It will display information about the club members, meetings times, etc."
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:padding="4dp" />
 
 </FrameLayout>
