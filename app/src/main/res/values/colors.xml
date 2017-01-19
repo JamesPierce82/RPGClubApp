@@ -6,5 +6,5 @@
     <color name="colorPrimaryCustom">#66b517</color>
     <color name="colorPrimaryDarkCustom">#52a500</color>
     <color name="colorAccentCustom">#eea72c</color>
-    <color name="NavBarColorCustom">#19381f</color>
+    <color name="NavBarColorCustom">#000000</color>
 </resources>
