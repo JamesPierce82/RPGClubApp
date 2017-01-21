@@ -94,6 +94,12 @@ public class GamesFragment extends Fragment {
             super(fm);
         }
 
+        /**
+         *
+         * @param position
+         * @return GameFragment.newInstance - This will return a new GameFragment with the information that is passed through the newInstance method
+         * description This will return a fragment based on which position is currently selected by the ViewPager.
+         */
         @Override
         public Fragment getItem(int position) {
             switch(position) {
