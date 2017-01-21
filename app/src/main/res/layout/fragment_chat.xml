@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ca.jamespierce.rpgclubapp.ChatFragment">
-<!--<ListView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:id="@+id/chatList"-->
-    <!--android:layout_weight="1"></ListView>-->
+
+    <!-- This is a RecyclerView. It is used in place of a ListView. It will delete items
+        as they scroll off the top or bottom of the screen, and only load new items as they are
+        pulled or pushed onto the screen.-->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,16 +15,20 @@
         android:layout_weight="1"
         android:scrollbars="vertical"
         android:scrollbarAlwaysDrawVerticalTrack="true"></android.support.v7.widget.RecyclerView>
+    <!-- This is used as a dividing line to distinguish between the chat and the message the
+        user is currently writing -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
+    <!-- Organizes the row below the char -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5">
 
+        <!-- This is where the user will enter the message they wish to send. -->
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,6 +39,7 @@
             android:scrollbars="vertical"
             android:scrollbarAlwaysDrawVerticalTrack="true" />
 
+        <!-- This is the button the user will use to send their message -->
         <Button
             android:text="Send"
             android:layout_width="wrap_content"
