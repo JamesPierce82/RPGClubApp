@@ -12,20 +12,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <!-- This is the app icon, the green 20 sided die. It is used for the app icon on the home screen,
+        and the ViewPager as well. -->
     <ImageView
         android:id="@+id/imageView"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/d20"
         android:layout_width="72dp"
         android:layout_height="72dp" />
-
+    <!-- This displays the app developer's name. -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="James Pierce"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
+ <!-- This displays the app developer's email -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
