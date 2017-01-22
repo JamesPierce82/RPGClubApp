@@ -17,8 +17,10 @@ import java.util.List;
 // Utilizing a guide found on https://guides.codepath.com/android/using-the-recyclerview for RecyclerView
 // Need a reycler view because of the content in the list
 
-// Create the basic adapter extending from RecyclerView.Adapter
-// Note that we specify the custom ViewHolder which gives us access to our views
+/**
+ * description This is the adapter class I use for the messages and the RecyclerView.
+ * This was put in a separate class file because of the static inner class having issues when in the ChatFragment.
+ */
 public class MessagesAdapter extends
         RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
 
