@@ -23,11 +23,13 @@ import android.widget.TextView;
 public class GameFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // The third parameter is used to pass the image into the newInstance method later on
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
 
-    // TODO: Rename and change types of parameters
+    // These are the three normal parameters we use to store the variables.
+    // Still not 100% sure why this is a necessary thing to do, but it works.
     private String mParam1;
     private String mParam2;
     private int mParam3;
@@ -43,8 +45,9 @@ public class GameFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param param1 title of the game
+     * @param param2 description of the game
+     * @param param3 resource id that points at the image we are passing
      * @return A new instance of fragment GameFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -58,6 +61,12 @@ public class GameFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     *
+     * description This sets the value of the mParam# variables to the values stored in the ARG_PARAM# variables
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +77,15 @@ public class GameFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     * This will check all the variables set in the onCreate to see if they are null
+     * As long as they are not null this will set the values to the appropriate views
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
