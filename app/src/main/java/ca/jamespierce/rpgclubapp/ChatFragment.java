@@ -73,6 +73,16 @@ public class ChatFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     * description This method is what is used to create the views in the fragment. It will hide the
+     * floating action button, create a list of messages to place in a Recycler View, add messages
+     * to the list and sets the adapters for the list
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

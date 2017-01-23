@@ -12,7 +12,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ca.jamespierce.rpgclubapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
-
+    <!-- This is the image of dice displayed behind the text -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,8 @@
         android:id="@+id/imageView2"
         android:alpha="0.7"
         android:layout_gravity="center_vertical" />
-
+    <!-- This text will be displayed on top of the image above. It uses a style called OverlayText
+        that provides styling such as a shadow to make it more visible on the image below. -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

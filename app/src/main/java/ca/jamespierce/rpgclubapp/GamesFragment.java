@@ -30,7 +30,7 @@ public class GamesFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    // Declare variables for the views and variables used
     private String mParam1;
     private String mParam2;
     private ViewPager viewPager;
@@ -70,6 +70,15 @@ public class GamesFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     * if the floating action button is showing, hide it. It connects the variables created above
+     * to the actual views, and sets adapters as necessary.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
