@@ -60,11 +60,22 @@ public class ClubInfoFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     *
+     * description This will be used to interact with all of the elements in this fragment upon their creation
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_club_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_club_info, container, false);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

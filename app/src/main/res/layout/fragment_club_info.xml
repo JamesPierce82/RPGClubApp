@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="ca.jamespierce.rpgclubapp.ClubInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- This is just a stub textview for now. Will replace this content with other information later -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

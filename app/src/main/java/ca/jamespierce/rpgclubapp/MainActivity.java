@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     * This will allow the user to select an item from the nav menu based on the id selected.
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

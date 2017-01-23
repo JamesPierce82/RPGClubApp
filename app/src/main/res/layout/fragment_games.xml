@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context="ca.jamespierce.rpgclubapp.GamesFragment">
 
+    <!-- This is a LoopViewPager. This is not the standard ViewPager we were taught to use in class.
+        It is designed to loop back to the first item if you swipe past the last item in the
+        ViewPager, and vice versa. This was not coded by me, but is allowed to be used under the
+        Apache 2.0 license, which I have linked and stored elsewhere in the app's contents -->
     <com.imbryk.viewPager.LoopViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/gamecontent"/>
-
+    <!-- This is the CircleIndicator. It is licensed under the Apache 2.0 license, along with
+        the LoopViewPager above it. The author, to my knowledge, is the same person.
+        It is used to display which page we are currently on. I have changed the image to a
+        custom image of a green 20 sided die that is free to use.-->
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
@@ -18,8 +25,6 @@
         app:ci_orientation="horizontal"
         app:ci_height="8dp"
         android:layout_gravity="bottom"
-        app:ci_width="8dp">
-
-    </me.relex.circleindicator.CircleIndicator>
+        app:ci_width="8dp"/>
 
 </FrameLayout>

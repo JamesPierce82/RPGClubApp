@@ -6,9 +6,8 @@
     tools:context="ca.jamespierce.rpgclubapp.GameFragment"
     android:orientation="vertical">
 
-
+    <!-- This is the title of the game being display -->
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
@@ -16,17 +15,15 @@
         android:textStyle="normal|bold"
         android:textAlignment="center"
         android:padding="2dp" />
-
+    <!-- This is an image of the game, or related to the game -->
     <ImageView
-        app:srcCompat="@drawable/ic_menu_gallery"
         android:id="@+id/gameImage"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_gravity="center_horizontal"
         android:padding="2dp" />
-
+    <!-- This is the description of the game -->
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gamedescription"

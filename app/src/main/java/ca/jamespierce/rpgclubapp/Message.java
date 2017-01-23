@@ -9,11 +9,13 @@ import android.widget.ImageView;
 
 public class Message {
 
+    // Declare variables
     private String name;
     private String timeSent;
     private String content;
     private int avatar;
 
+    // Constructor
     public Message(String name, String timeSent, String content, int avatar) {
         this.name = name;
         this.timeSent = timeSent;
@@ -21,8 +23,10 @@ public class Message {
         this.avatar = avatar;
     }
 
+    // toString()
     public String toString() { return getName();}
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
