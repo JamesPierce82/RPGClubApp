@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     FragmentManager fm = getSupportFragmentManager();
     public static FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
