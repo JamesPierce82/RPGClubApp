@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ca.jamespierce.rpgclubapp.ChatFragment">
-
     <!-- This is a RecyclerView. It is used in place of a ListView. It will delete items
         as they scroll off the top or bottom of the screen, and only load new items as they are
         pulled or pushed onto the screen.-->
@@ -25,19 +24,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="5">
+        android:layout_height="wrap_content">
 
         <!-- This is where the user will enter the message they wish to send. -->
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:ems="10"
             android:id="@+id/editMessage"
             android:layout_weight="4"
             android:scrollbars="vertical"
-            android:scrollbarAlwaysDrawVerticalTrack="true" />
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:maxLines="3"
+            android:lines="3" />
 
         <!-- This is the button the user will use to send their message -->
         <Button
