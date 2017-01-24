@@ -108,6 +108,7 @@ public class ChatFragment extends Fragment {
         fab.hide();
 
         // Attempt to move content up when opening the EditText
+        // This does not work all the time. No idea why.
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
