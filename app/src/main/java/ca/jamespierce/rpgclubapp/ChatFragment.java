@@ -48,6 +48,7 @@ public class ChatFragment extends Fragment {
     // Declare variables for the message content to be transferred
     EditText messageContent;
     String newMessage;
+    String currentDateTimeString;
 
     // Declare variables to store the user's information
     // This will later be used to connect to the settings
@@ -105,6 +106,7 @@ public class ChatFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.hide();
 
+        messageContent = (EditText) view.findViewById(R.id.editMessage);
         sendButton = (Button) view.findViewById(R.id.sendButton);
         rvMessages = (RecyclerView) view.findViewById(R.id.chatList);
 
@@ -128,7 +130,7 @@ public class ChatFragment extends Fragment {
         messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
 
 
-        MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
+        final MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
 
         // Attach the adapter to the recyclerview to populate items
         rvMessages.setAdapter(adapter);
@@ -140,16 +142,20 @@ public class ChatFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newMessage =  messageContent.toString();
+                newMessage =  messageContent.getText().toString();
 
                 // This will get the current time.
-                String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
                 // This will add the message to the messageList.
                 messageList.add(new Message(userName, currentDateTimeString, newMessage, userAvatar));
 
                 // This will update the adapter so that the new message will be displayed on the screen
-                
+                // This will update the view adapter
+                adapter.notifyDataSetChanged();
+
+                // This will clear the editText
+                messageContent.setText("");
             }
         });
 
