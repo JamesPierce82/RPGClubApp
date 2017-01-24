@@ -9,22 +9,7 @@
         <item name="android:colorBackground">@android:color/background_light</item>
     </style>
 
-<<<<<<< HEAD
-    <!-- This will be the Splash screens StyleTheme -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
-=======
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
->>>>>>> parent of 724f6ac... Undoing this commit
-=======
-    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
->>>>>>> parent of 14b5826... SplashActivity.java
-        <item name="android:windowBackground">@drawable/splash</item>
-    </style>
-
-=======
->>>>>>> parent of 5aede96... SplashTheme added
+    
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
