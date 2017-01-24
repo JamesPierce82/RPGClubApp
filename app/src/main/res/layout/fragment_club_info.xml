@@ -1,17 +1,107 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ca.jamespierce.rpgclubapp.ClubInfoFragment">
+    android:layout_height="wrap_content"
+    tools:context="ca.jamespierce.rpgclubapp.ClubInfoFragment"
+    android:orientation="vertical">
 
-    <!-- This is just a stub textview for now. Will replace this content with other information later -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is a stub fragment for now. It will display information about the club members, meetings times, etc."
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:padding="4dp" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Club Meeting Times"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                android:padding="10dp"
+                android:id="@+id/meetingTitle" />
+
+            <TextView
+                android:text="Orbs and Orcs : \n     4pm - 10pm Tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/orbsAndOrcsTime"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="Trailspotter: \n     6pm - 12pm Wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trailSpotterTime"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="Call to ChooChoo \n     6pm - 9pm Friday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/calltoChooChooTime"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="DESTINY \n     6pm - 2am Saturday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/destinyTime"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="DarkWalk \n     7pm - 10pm Sunday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/darkWalkTime"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="Contact Us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/contactTitle"
+                android:textSize="36sp"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:padding="10dp" />
+
+            <TextView
+                android:text="Club Phone Number: \n     519-519-5199"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/clubCellNumber"
+                android:textSize="24sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:text="Club Members"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/clubMembers"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                android:padding="10dp" />
+
+            <TextView
+                android:text="This is a stub for a future ViewPager. \n     This will allow the user to swipe through the members of the club. \n     Pull this information from the chat for now."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/clubMemberStub"
+                android:textSize="24sp"
+                android:padding="4dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
