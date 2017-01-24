@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,8 +41,19 @@ public class ChatFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // Declare variables for views being displayed
     RecyclerView rvMessages;
+    Button sendButton;
 
+    // Declare variables for the message content to be transferred
+    EditText messageContent;
+    String newMessage;
+    String currentDateTimeString;
+
+    // Declare variables to store the user's information
+    // This will later be used to connect to the settings
+    String userName = "James";
+    int userAvatar = R.drawable.bob;
 
     private OnFragmentInteractionListener mListener;
 
@@ -91,6 +106,8 @@ public class ChatFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.hide();
 
+        messageContent = (EditText) view.findViewById(R.id.editMessage);
+        sendButton = (Button) view.findViewById(R.id.sendButton);
         rvMessages = (RecyclerView) view.findViewById(R.id.chatList);
 
         // Create an ArrayList that holds messages
@@ -113,7 +130,7 @@ public class ChatFragment extends Fragment {
         messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
 
 
-        MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
+        final MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
 
         // Attach the adapter to the recyclerview to populate items
         rvMessages.setAdapter(adapter);
@@ -121,11 +138,32 @@ public class ChatFragment extends Fragment {
         // Set layout manager to position the items
         rvMessages.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        // Unlike the other apps we have done, This one does not require a onclick listener currently.
-        // It does not need to perform any actions when touching the message.
+        // This will be used to send a message once the user is ready to send it.
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newMessage =  messageContent.getText().toString();
+
+                // This will get the current time.
+                currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
+                // This will add the message to the messageList.
+                messageList.add(new Message(userName, currentDateTimeString, newMessage, userAvatar));
+
+                // This will update the adapter so that the new message will be displayed on the screen
+                // This will update the view adapter
+                adapter.notifyDataSetChanged();
+
+                // This will clear the editText
+                messageContent.setText("");
+            }
+        });
+
 
         return view;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
