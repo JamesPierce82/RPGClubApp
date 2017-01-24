@@ -11,11 +11,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-<<<<<<< HEAD
-            android:theme="@style/AppTheme">
-=======
             android:theme="@style/AppTheme.NoActionBar">
->>>>>>> parent of 14b5826... SplashActivity.java
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
