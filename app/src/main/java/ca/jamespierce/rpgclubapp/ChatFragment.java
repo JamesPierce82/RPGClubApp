@@ -109,8 +109,7 @@ public class ChatFragment extends Fragment {
 
         // Attempt to move content up when opening the EditText
         // This does not work all the time. No idea why.
-        getActivity().getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         messageContent = (EditText) view.findViewById(R.id.editMessage);
         sendButton = (Button) view.findViewById(R.id.sendButton);

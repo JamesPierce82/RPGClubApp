@@ -25,8 +25,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="5">
+        android:layout_height="wrap_content">
 
         <!-- This is where the user will enter the message they wish to send. -->
         <EditText
@@ -39,7 +38,7 @@
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:maxLines="3"
             android:lines="3" />
-
+ 
         <!-- This is the button the user will use to send their message -->
         <Button
             android:text="Send"
