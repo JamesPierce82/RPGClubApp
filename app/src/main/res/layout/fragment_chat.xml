@@ -37,7 +37,8 @@
             android:id="@+id/editMessage"
             android:layout_weight="4"
             android:scrollbars="vertical"
-            android:scrollbarAlwaysDrawVerticalTrack="true" />
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:maxLines="3" />
 
         <!-- This is the button the user will use to send their message -->
         <Button
