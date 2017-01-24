@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity
 
     FragmentManager fm = getSupportFragmentManager();
     public static FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 
         if(savedInstanceState == null){
             FragmentTransaction tran = fm.beginTransaction();
