@@ -93,9 +93,13 @@
                 android:textAlignment="center"
                 android:textSize="36sp"
                 android:padding="10dp" />
+            <!-- This will display information about the Club Members-->
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <TextView
-                android:text="This is a stub for a future ViewPager. \n     This will allow the user to swipe through the members of the club. \n     Pull this information from the chat for now."
+                android:text="Pull this information from the chat for now."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/clubMemberStub"
