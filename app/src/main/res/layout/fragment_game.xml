@@ -18,8 +18,8 @@
     <!-- This is an image of the game, or related to the game -->
     <ImageView
         android:id="@+id/gameImage"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="240dp"
+        android:layout_height="160dp"
         android:layout_gravity="center_horizontal"
         android:padding="2dp" />
     <!-- This is the description of the game -->
