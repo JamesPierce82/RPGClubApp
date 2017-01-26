@@ -20,3 +20,12 @@ Black and White D20 Image 1
 Circle Indicator and Looping ViewPager
 	http://www.apache.org/licenses/LICENSE-2.0
 		https://github.com/ongakuer/CircleIndicator
+Stealth Owl
+	CC0 Public Domain - Free for commercial use - No attribution required 
+		https://pixabay.com/en/great-horned-owl-portrait-bird-1157986/
+Train
+	CC0 Public Domain - Free for commercial use - No attribution required
+		https://pixabay.com/en/japan-train-locomotive-hdr-smoke-138954/
+Notebook
+	CC0 Public Domain - Free for commercial use - No attribution required
+		https://pixabay.com/en/school-book-binder-folder-notebook-1560339/
