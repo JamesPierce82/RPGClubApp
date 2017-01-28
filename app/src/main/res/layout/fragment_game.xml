@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:textStyle="normal|bold"
         android:textAlignment="center"
         android:padding="2dp" />
@@ -38,7 +38,15 @@
         android:background="@android:color/darker_gray"/>
 
     <TextView
-        android:text="TextView"
+        android:text="Meeting Times"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/meetingTimeTitle"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/meetingTime"

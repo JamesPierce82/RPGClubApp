@@ -26,12 +26,13 @@
                 android:padding="10dp" />
 
             <TextView
-                android:text="Club Phone Number: \n     519-519-5199"
+                android:text="Club Phone Number: \n519-519-5199"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/clubCellNumber"
                 android:textSize="24sp"
-                android:padding="4dp" />
+                android:padding="4dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="Club Members"
@@ -47,13 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-            <TextView
-                android:text="Pull this information from the chat for now."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/clubMemberStub"
-                android:textSize="24sp"
-                android:padding="4dp" />
         </LinearLayout>
     </ScrollView>
 

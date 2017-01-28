@@ -27,12 +27,14 @@ public class GameFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
+    private static final String ARG_PARAM4 = "param4";
 
     // These are the three normal parameters we use to store the variables.
     // Still not 100% sure why this is a necessary thing to do, but it works.
     private String mParam1;
     private String mParam2;
     private int mParam3;
+    private String mParam4;
 
 
     private OnFragmentInteractionListener mListener;
@@ -51,12 +53,13 @@ public class GameFragment extends Fragment {
      * @return A new instance of fragment GameFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GameFragment newInstance(String param1, String param2, int param3) {
+    public static GameFragment newInstance(String param1, String param2, int param3, String param4) {
         GameFragment fragment = new GameFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         args.putInt(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,6 +77,7 @@ public class GameFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getInt(ARG_PARAM3);
+            mParam4 = getArguments().getString(ARG_PARAM4);
         }
     }
 
@@ -105,6 +109,10 @@ public class GameFragment extends Fragment {
         if(mParam3 != 0) {
             ImageView image = (ImageView) view.findViewById(R.id.gameImage);
             image.setImageResource(mParam3);
+        }
+        if(mParam4 != null) {
+            TextView meetingTime = (TextView) view.findViewById(R.id.meetingTime);
+            meetingTime.setText(mParam4);
         }
 
         return view;

@@ -131,7 +131,7 @@ public class GamesFragment extends Fragment {
                 case 4:
                     return GameFragment.newInstance("DESTINY", "This is a game that centers around beating things up. Every character has a predetermined destiny, its up to the players to fulfill it... or die in the trying!", R.drawable.dice2, "6pm - 2am Saturday");
                 default:
-                    return GameFragment.newInstance("This should never show up", "Or this", R.drawable.dice);
+                    return GameFragment.newInstance("This should never show up", "Or this", R.drawable.dice, "Never");
             }
         }
 
