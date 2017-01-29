@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,8 @@ public class ClubInfoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ViewPager viewPager;
+    private MemberSectionPagerAdapter mSectionPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,7 +80,39 @@ public class ClubInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_club_info, container, false);
 
+        // This will set the PagerAdapter to the adapter built for the Member information
+        mSectionPagerAdapter = new MemberSectionPagerAdapter((getChildFragmentManager()));
+        viewPager = (ViewPager) view.findViewById(R.id.membercontent);
+        viewPager.setAdapter(mSectionPagerAdapter);
+
         return view;
+    }
+
+    public class MemberSectionPagerAdapter extends FragmentPagerAdapter {
+        public MemberSectionPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch(position) {
+                case 0:
+                    return MemberFragment.newInstance("James Pierce", "President", R.drawable.james);
+                case 1:
+                    return MemberFragment.newInstance("Bob Robert", "Member", R.drawable.bob);
+                case 2:
+                    return MemberFragment.newInstance("Emily Willis", "Member", R.drawable.emily);
+                case 3:
+                    return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
+                default:
+                    return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
