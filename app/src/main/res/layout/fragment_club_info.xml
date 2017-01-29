@@ -5,16 +5,6 @@
     tools:context="ca.jamespierce.rpgclubapp.ClubInfoFragment"
     android:orientation="vertical">
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
             <TextView
                 android:text="Contact Us"
                 android:layout_width="match_parent"
@@ -46,9 +36,6 @@
             <!-- This will display information about the Club Members-->
             <android.support.v4.view.ViewPager
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
-    </ScrollView>
-
+                android:layout_height="wrap_content"
+                android:id="@+id/membercontent" />
 </LinearLayout>
