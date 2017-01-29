@@ -35,7 +35,7 @@ public class GamesFragment extends Fragment {
     private String mParam2;
     private ViewPager viewPager;
     CircleIndicator indicator;
-    private SectionPagerAdapter sectionPagerAdapter;
+    private GamesSectionPagerAdapter sectionPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,7 +88,7 @@ public class GamesFragment extends Fragment {
         if(fab.isShown()) {
             fab.hide();
         }
-        sectionPagerAdapter = new SectionPagerAdapter((getChildFragmentManager()));
+        sectionPagerAdapter = new GamesSectionPagerAdapter((getChildFragmentManager()));
         viewPager = (ViewPager) view.findViewById(R.id.gamecontent);
         indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewPager.setAdapter(sectionPagerAdapter);
@@ -97,9 +97,9 @@ public class GamesFragment extends Fragment {
         return view;
     }
 
-    public class SectionPagerAdapter extends FragmentPagerAdapter {
+    public class GamesSectionPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionPagerAdapter(FragmentManager fm) {
+        public GamesSectionPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -120,18 +120,18 @@ public class GamesFragment extends Fragment {
                  * Change this to fix weird loading issues.*/
                 case 0:
                 case 5:
-                    return GameFragment.newInstance("DarkWalk", "A stealth based game where you take missions from contractors and attempt to complete them. This plays very different from the smash-em up games at the top of this list.", R.drawable.dice);
+                    return GameFragment.newInstance("DarkWalk", "A stealth based game where you take missions from contractors and attempt to complete them. This plays very different from the smash-em up games at the top of this list.", R.drawable.stealth, "7pm - 10pm Sunday");
                 case 1:
                 case 6:
-                    return GameFragment.newInstance("Orbs and Orcs", "This is a game that revolves around party play, dungeon diving, and ruining the lives of all the non-fairy like creatures in the world of Karrova.", R.drawable.dice);
+                    return GameFragment.newInstance("Orbs and Orcs", "This is a game that revolves around party play, dungeon diving, and ruining the lives of all the non-fairy like creatures in the world of Karrova.", R.drawable.notebook, "4pm - 10pm Tuesday");
                 case 2:
-                    return GameFragment.newInstance("Trailspotter", "Similar in genre to Orbs and Orcs, this game allows players to run around the world of Rokavva and do lots and lots of fetch quests. It's like an MMORPG, but with 5 people in person!", R.drawable.dice);
+                    return GameFragment.newInstance("Trailspotter", "Similar in genre to Orbs and Orcs, this game allows players to run around the world of Rokavva and do lots and lots of fetch quests. It's like an MMORPG, but with 5 people in person!", R.drawable.trail, "6pm - 12pm Wednesday");
                 case 3:
-                    return GameFragment.newInstance("Call to ChooChoo", "This is a thriller/horror style game where the players band together against insanity, and battle the monsters of the night. All games must take place on a train.", R.drawable.dice);
+                    return GameFragment.newInstance("Call to ChooChoo", "This is a thriller/horror style game where the players band together against insanity, and battle the monsters of the night. All games must take place on a train.", R.drawable.train, "6pm - 9pm Friday");
                 case 4:
-                    return GameFragment.newInstance("DESTINY", "This is a game that centers around beating things up. Every character has a predetermined destiny, its up to the players to fulfill it... or die in the trying!", R.drawable.dice);
+                    return GameFragment.newInstance("DESTINY", "This is a game that centers around beating things up. Every character has a predetermined destiny, its up to the players to fulfill it... or die in the trying!", R.drawable.dice2, "6pm - 2am Saturday");
                 default:
-                    return GameFragment.newInstance("This should never show up", "Or this", R.drawable.dice);
+                    return GameFragment.newInstance("This should never show up", "Or this", R.drawable.dice, "Never");
             }
         }
 

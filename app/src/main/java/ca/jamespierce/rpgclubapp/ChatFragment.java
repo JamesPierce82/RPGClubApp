@@ -53,7 +53,7 @@ public class ChatFragment extends Fragment {
 
     // Declare variables to store the user's information
     // This will later be used to connect to the settings
-    String userName = "James";
+    String userName = "John";
     int userAvatar = R.drawable.bob;
 
     private OnFragmentInteractionListener mListener;

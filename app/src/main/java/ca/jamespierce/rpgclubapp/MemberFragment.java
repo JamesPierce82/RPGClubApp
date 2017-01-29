@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,31 +14,27 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GameFragment.OnFragmentInteractionListener} interface
+ * {@link MemberFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GameFragment#newInstance} factory method to
+ * Use the {@link MemberFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GameFragment extends Fragment {
+public class MemberFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    // The third parameter is used to pass the image into the newInstance method later on
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
-    private static final String ARG_PARAM4 = "param4";
 
-    // These are the three normal parameters we use to store the variables.
-    // Still not 100% sure why this is a necessary thing to do, but it works.
+    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private int mParam3;
-    private String mParam4;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public GameFragment() {
+    public MemberFragment() {
         // Required empty public constructor
     }
 
@@ -47,29 +42,21 @@ public class GameFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 title of the game
-     * @param param2 description of the game
-     * @param param3 resource id that points at the image we are passing
-     * @return A new instance of fragment GameFragment.
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment MemberFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GameFragment newInstance(String param1, String param2, int param3, String param4) {
-        GameFragment fragment = new GameFragment();
+    public static MemberFragment newInstance(String param1, String param2, int param3) {
+        MemberFragment fragment = new MemberFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         args.putInt(ARG_PARAM3, param3);
-        args.putString(ARG_PARAM4, param4);
         fragment.setArguments(args);
         return fragment;
     }
 
-    /**
-     *
-     * @param savedInstanceState
-     *
-     * description This sets the value of the mParam# variables to the values stored in the ARG_PARAM# variables
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,42 +64,28 @@ public class GameFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getInt(ARG_PARAM3);
-            mParam4 = getArguments().getString(ARG_PARAM4);
         }
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     * This will check all the variables set in the onCreate to see if they are null
-     * As long as they are not null this will set the values to the appropriate views
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View view = inflater.inflate(R.layout.fragment_game, container, false);
+        View view =  inflater.inflate(R.layout.fragment_member, container, false);
 
         if(mParam1 != null) {
-            TextView text = (TextView) view.findViewById(R.id.title);
-            text.setText(mParam1);
+            TextView memberName = (TextView) view.findViewById(R.id.memberName);
+            memberName.setText(mParam1);
         }
         if(mParam2 != null) {
-            TextView gamedescription = (TextView) view.findViewById(R.id.gamedescription);
-            gamedescription.setText(mParam2);
+            TextView memberRole = (TextView) view.findViewById(R.id.memberRole);
+            memberRole.setText(mParam2);
         }
         // Not sure how to best deal with this, 0 seems to work but leaves
         // the rare case where it could fail.
         if(mParam3 != 0) {
-            ImageView image = (ImageView) view.findViewById(R.id.gameImage);
-            image.setImageResource(mParam3);
-        }
-        if(mParam4 != null) {
-            TextView meetingTime = (TextView) view.findViewById(R.id.meetingTime);
-            meetingTime.setText(mParam4);
+            ImageView memberAvatar = (ImageView) view.findViewById(R.id.memberAvatar);
+            memberAvatar.setImageResource(mParam3);
         }
 
         return view;
