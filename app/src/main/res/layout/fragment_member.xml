@@ -11,8 +11,8 @@
         app:srcCompat="@drawable/ic_menu_manage"
         android:id="@+id/memberAvatar"
         android:padding="2dp"
-        android:layout_height="32dp"
-        android:layout_width="32dp" />
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
     <!-- This will stack the Name, Date, and Message fields vertically -->
     <LinearLayout
         android:orientation="vertical"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/memberName"
                 android:textAllCaps="false"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 android:padding="2dp"
                 android:textStyle="normal|bold" />
             <!-- This will display the date / time the user sent the message -->
@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/memberRole"
-            android:padding="2dp" />
+            android:padding="2dp"
+            android:textSize="21sp" />
     </LinearLayout>
 </LinearLayout>
