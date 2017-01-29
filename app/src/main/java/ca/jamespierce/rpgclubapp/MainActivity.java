@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity
                     ChatFragment.OnFragmentInteractionListener,
                     ClubInfoFragment.OnFragmentInteractionListener,
                     GameFragment.OnFragmentInteractionListener,
-                    GamesFragment.OnFragmentInteractionListener{
+                    GamesFragment.OnFragmentInteractionListener,
+                    MemberFragment.OnFragmentInteractionListener{
 
     FragmentManager fm = getSupportFragmentManager();
     public static FloatingActionButton fab;

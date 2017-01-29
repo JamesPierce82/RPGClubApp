@@ -35,7 +35,7 @@ public class GamesFragment extends Fragment {
     private String mParam2;
     private ViewPager viewPager;
     CircleIndicator indicator;
-    private SectionPagerAdapter sectionPagerAdapter;
+    private GamesSectionPagerAdapter sectionPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,7 +88,7 @@ public class GamesFragment extends Fragment {
         if(fab.isShown()) {
             fab.hide();
         }
-        sectionPagerAdapter = new SectionPagerAdapter((getChildFragmentManager()));
+        sectionPagerAdapter = new GamesSectionPagerAdapter((getChildFragmentManager()));
         viewPager = (ViewPager) view.findViewById(R.id.gamecontent);
         indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewPager.setAdapter(sectionPagerAdapter);
@@ -97,9 +97,9 @@ public class GamesFragment extends Fragment {
         return view;
     }
 
-    public class SectionPagerAdapter extends FragmentPagerAdapter {
+    public class GamesSectionPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionPagerAdapter(FragmentManager fm) {
+        public GamesSectionPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
