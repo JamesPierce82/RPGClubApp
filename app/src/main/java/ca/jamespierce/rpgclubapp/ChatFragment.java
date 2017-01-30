@@ -129,11 +129,17 @@ public class ChatFragment extends Fragment {
         messageList.add(new Message("Bob", "Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", R.drawable.bob));
         messageList.add(new Message("Charlie", "Jan 15, 2017 9:44am", "It was supposed to be ue thursday, but only 'tentatively'. He hasn't said for sure yet.", R.drawable.charlie));
         messageList.add(new Message("Bob", "Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", R.drawable.bob));
-        messageList.add(new Message("Emily", "yesterday at 12:03pm", "Do you guys still play Trailspotter?", R.drawable.emily));
-        messageList.add(new Message("James", "yesterday at 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.james));
-        messageList.add(new Message("Emily", "yesterday at 18 12:11pm", "Okay cool. When do you guys play that?", R.drawable.emily));
-        messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
-
+        messageList.add(new Message("Emily", "Jan 16, 2017 12:03pm", "Do you guys still play Trailspotter?", R.drawable.emily));
+        messageList.add(new Message("James", "Jan 16, 2017 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.james));
+        messageList.add(new Message("Emily", "Jan 16, 2017 12:11pm", "Okay cool. When do you guys play that?", R.drawable.emily));
+        messageList.add(new Message("James", "Jan 17, 2017 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
+        messageList.add(new Message("George", "Jan 22, 2017 4:14pm", "Where are the meeting times for Call to ChooChoo? I thought somebody said they were in the About The Club section of that app...", R.drawable.george));
+        messageList.add(new Message("James", "Jan 22, 2017 4:23pm", "Those were recently moved to the RPG Games section. We figured it would make more sense to have the times listed there instead.", R.drawable.james));
+        messageList.add(new Message("George", "Jan 22, 2017 4:25pm", "Oh, okay. That does make a lot more sense.", R.drawable.george));
+        messageList.add(new Message("James", "Jan 22, 2017 4:33pm", "We will be adding information about all of our members to the About The Club section instead soon!", R.drawable.james));
+        messageList.add(new Message("Sally", "Jan 24, 2017 5:12pm", "Oh cool! I love the update, it looks like we're all listed now, and it even shows our roles in the club!", R.drawable.sally));
+        messageList.add(new Message("Charlie", "Jan 24, 2017 9:44pm", "Yeah, we worked really hard to get all the information together. We actually draw all that information from our chat system so that it changes dynamically if somebody changes role(if I were to leave the VP role, I would automatically update to become a member)...", R.drawable.charlie));
+        messageList.add(new Message("Sally", "Jan 25, 2017 8:12am", "Very awesome! Looking forward to what you guys add next!", R.drawable.sally));
 
         final MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
 
