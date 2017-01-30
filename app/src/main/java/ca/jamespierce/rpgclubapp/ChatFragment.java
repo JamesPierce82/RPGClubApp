@@ -133,6 +133,8 @@ public class ChatFragment extends Fragment {
         messageList.add(new Message("James", "yesterday at 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", R.drawable.james));
         messageList.add(new Message("Emily", "yesterday at 18 12:11pm", "Okay cool. When do you guys play that?", R.drawable.emily));
         messageList.add(new Message("James", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
+        messageList.add(new Message("George", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
+        messageList.add(new Message("Sally", "today at 1:14am", "We actually have that information listed in the About the Club", R.drawable.james));
 
 
         final MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
