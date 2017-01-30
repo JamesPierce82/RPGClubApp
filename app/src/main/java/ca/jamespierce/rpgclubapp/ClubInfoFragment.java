@@ -105,9 +105,9 @@ public class ClubInfoFragment extends Fragment {
                 case 3:
                     return MemberFragment.newInstance("Bob Robert", "Member", R.drawable.bob);
                 case 4:
-                    return MemberFragment.newInstance("George Bush", "Member", R.drawable.bob);
+                    return MemberFragment.newInstance("George Shrub", "Member", R.drawable.george);
                 case 5:
-                    return MemberFragment.newInstance("Sally Cobert", "Member", R.drawable.bob);
+                    return MemberFragment.newInstance("Sally Cobert", "Member", R.drawable.sally);
                 default:
                     return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
             }
