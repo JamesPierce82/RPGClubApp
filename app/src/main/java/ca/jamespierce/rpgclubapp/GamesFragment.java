@@ -98,6 +98,7 @@ public class GamesFragment extends Fragment {
         return view;
     }
 
+
     /**
      * This is the ZoomOutPageTransormer. It will modify how the pages in the ViewPager will appear and disappear
      * on the screen as the user swipes and preses the left and right buttons.
