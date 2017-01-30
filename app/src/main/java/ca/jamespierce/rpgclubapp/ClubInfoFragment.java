@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 
 /**
@@ -31,6 +33,8 @@ public class ClubInfoFragment extends Fragment {
     private String mParam2;
     private ViewPager viewPager;
     private MemberSectionPagerAdapter mSectionPagerAdapter;
+    private ImageButton leftButton;
+    private ImageButton rightButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,12 +86,86 @@ public class ClubInfoFragment extends Fragment {
 
         // This will set the PagerAdapter to the adapter built for the Member information
         mSectionPagerAdapter = new MemberSectionPagerAdapter((getChildFragmentManager()));
+        leftButton = (ImageButton) view.findViewById(R.id.leftButton);
+        rightButton = (ImageButton) view.findViewById(R.id.rightButton);
+        viewPager.setPageTransformer(true, new DepthPageTransformer());
         viewPager = (ViewPager) view.findViewById(R.id.membercontent);
         viewPager.setAdapter(mSectionPagerAdapter);
+
+        // These event handlers will allow the user to use the buttons to rotate through the viewpager,
+        // moving from the end to the beginning without noticing a change.
+        leftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int location = viewPager.getCurrentItem();
+                if(location > 0) {
+                    location--;
+                    viewPager.setCurrentItem(location);
+                } else if (location == 0){
+                    viewPager.setCurrentItem(viewPager.getChildCount() + 1);
+                }
+            }
+        });
+
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int location = viewPager.getCurrentItem();
+                location++;
+                if(location >= viewPager.getChildCount() + 1) {
+                    viewPager.setCurrentItem(0);
+                } else {
+                    viewPager.setCurrentItem(location);
+                }
+            }
+        });
 
         return view;
     }
 
+    /**
+     * This is the DepthPageTransformer, as provided by Google for use in ViewPagers.
+     */
+    public class DepthPageTransformer implements ViewPager.PageTransformer {
+        private static final float MIN_SCALE = 0.75f;
+
+        public void transformPage(View view, float position) {
+            int pageWidth = view.getWidth();
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(0);
+
+            } else if (position <= 0) { // [-1,0]
+                // Use the default slide transition when moving to the left page
+                view.setAlpha(1);
+                view.setTranslationX(0);
+                view.setScaleX(1);
+                view.setScaleY(1);
+
+            } else if (position <= 1) { // (0,1]
+                // Fade the page out.
+                view.setAlpha(1 - position);
+
+                // Counteract the default slide transition
+                view.setTranslationX(pageWidth * -position);
+
+                // Scale the page down (between MIN_SCALE and 1)
+                float scaleFactor = MIN_SCALE
+                        + (1 - MIN_SCALE) * (1 - Math.abs(position));
+                view.setScaleX(scaleFactor);
+                view.setScaleY(scaleFactor);
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(0);
+            }
+        }
+    }
+
+    /**
+     * This is the MemberSectionPagerAdapter for use in displaying content in the ViewPager
+     */
     public class MemberSectionPagerAdapter extends FragmentPagerAdapter {
         public MemberSectionPagerAdapter(FragmentManager fm) {
             super(fm);
