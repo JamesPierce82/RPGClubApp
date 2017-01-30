@@ -88,8 +88,8 @@ public class ClubInfoFragment extends Fragment {
         mSectionPagerAdapter = new MemberSectionPagerAdapter((getChildFragmentManager()));
         leftButton = (ImageButton) view.findViewById(R.id.leftButton);
         rightButton = (ImageButton) view.findViewById(R.id.rightButton);
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
-//        viewPager = (ViewPager) view.findViewById(R.id.membercontent);
+        viewPager = (ViewPager) view.findViewById(R.id.membercontent);
+//        viewPager.setPageTransformer(true, new DepthPageTransformer());
         viewPager.setAdapter(mSectionPagerAdapter);
 
         // These event handlers will allow the user to use the buttons to rotate through the viewpager,
@@ -123,7 +123,7 @@ public class ClubInfoFragment extends Fragment {
         return view;
     }
 
-    
+
 
     /**
      * This is the DepthPageTransformer, as provided by Google for use in ViewPagers.
