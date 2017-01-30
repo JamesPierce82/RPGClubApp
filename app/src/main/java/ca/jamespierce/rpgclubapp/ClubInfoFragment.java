@@ -99,11 +99,15 @@ public class ClubInfoFragment extends Fragment {
                 case 0:
                     return MemberFragment.newInstance("James Pierce", "President", R.drawable.james);
                 case 1:
-                    return MemberFragment.newInstance("Bob Robert", "Member", R.drawable.bob);
+                    return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
                 case 2:
                     return MemberFragment.newInstance("Emily Willis", "Member", R.drawable.emily);
                 case 3:
-                    return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
+                    return MemberFragment.newInstance("Bob Robert", "Member", R.drawable.bob);
+                case 4:
+                    return MemberFragment.newInstance("George Bush", "Member", R.drawable.bob);
+                case 5:
+                    return MemberFragment.newInstance("Sally Cobert", "Member", R.drawable.bob);
                 default:
                     return MemberFragment.newInstance("Charlie Tonka", "Vice-President", R.drawable.charlie);
             }
@@ -111,7 +115,7 @@ public class ClubInfoFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
     }
 
