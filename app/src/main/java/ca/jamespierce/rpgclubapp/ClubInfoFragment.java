@@ -101,7 +101,7 @@ public class ClubInfoFragment extends Fragment {
                 if(location > 0) {
                     location--;
                     viewPager.setCurrentItem(location);
-                } else if (location == 0){
+                } else if (location == 0){ 
                     viewPager.setCurrentItem(viewPager.getChildCount() + 1);
                 }
             }
