@@ -102,7 +102,7 @@ public class ClubInfoFragment extends Fragment {
                     location--;
                     viewPager.setCurrentItem(location);
                 } else if (location == 0){
-                    viewPager.setCurrentItem(viewPager.getChildCount() + 1);
+                    viewPager.setCurrentItem(viewPager.getChildCount() + 3);
                 }
             }
         });
@@ -112,7 +112,7 @@ public class ClubInfoFragment extends Fragment {
             public void onClick(View v) {
                 int location = viewPager.getCurrentItem();
                 location++;
-                if(location >= viewPager.getChildCount() + 1) {
+                if(location >= viewPager.getChildCount() + 3) {
                     viewPager.setCurrentItem(0);
                 } else {
                     viewPager.setCurrentItem(location);
