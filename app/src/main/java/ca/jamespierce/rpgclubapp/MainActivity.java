@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentTransaction tran = fm.beginTransaction();
+        tran.setCustomAnimations(R.anim.zoominanimation, R.anim.zoomoutanimation);
         if (id == R.id.nav_home) {
             tran.replace(R.id.content_main, new MainFragment());
             tran.commit();
