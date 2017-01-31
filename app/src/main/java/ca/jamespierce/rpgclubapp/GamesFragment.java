@@ -173,7 +173,7 @@ public class GamesFragment extends Fragment {
                 case 6:
                     return GameFragment.newInstance("Orbs and Orcs", "This is a game that revolves around party play, dungeon diving, and ruining the lives of all the non-fairy like creatures in the world of Karrova.", R.drawable.notebook, "4pm - 10pm Tuesday");
                 case 2:
-                    return GameFragment.newInstance("Trailspotter", "Similar in genre to Orbs and Orcs, this game allows players to run around the world of Rokavva and do lots and lots of fetch quests. It's like an MMORPG, but with 5 people in person!", R.drawable.trail, "6pm - 12pm Wednesday");
+                    return GameFragment.newInstance("Trailspotter", "Similar in genre to Orbs and Orcs, this game allows players to run around the world of Rokavva and do lots and lots of fetch quests. It's like an MMORPG, but in person!", R.drawable.trail, "6pm - 12pm Wednesday");
                 case 3:
                     return GameFragment.newInstance("Call to ChooChoo", "This is a thriller/horror style game where the players band together against insanity, and battle the monsters of the night. All games must take place on a train.", R.drawable.train, "6pm - 9pm Friday");
                 case 4:
