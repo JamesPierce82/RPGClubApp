@@ -12,6 +12,11 @@
             android:id="@+id/nav_games"
             android:icon="@drawable/ic_games_black_24dp"
             android:title="RPG Games" />
+        <!-- This is the menu item that takes the user to the "equipment page"-->
+        <item
+            android:id="@+id/nav_equipment"
+            android:icon="@drawable/ic_colorize_black_24dp"
+            android:title="Equipment To Bring" />
         <!-- This is the menu item that takes the user to the "chat page"-->
         <item
             android:id="@+id/nav_chat"

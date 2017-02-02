@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_games) {
             tran.replace(R.id.content_main, new GamesFragment());
             tran.commit();
+        } else if (id == R.id.nav_equipment) {
+            tran.replace(R.id.content_main, new EquipmentFragment());
+            tran.commit();
         } else if (id == R.id.nav_chat) {
             tran.replace(R.id.content_main, new ChatFragment());
             tran.commit();
