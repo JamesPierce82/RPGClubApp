@@ -22,6 +22,20 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_help_outline_black_24dp"
             android:title="About the Club" />
+        <item android:title="Communicate">
+            <menu>
+                <!-- This will take the user to the phone app to give us a call -->
+                <item
+                    android:id="@+id/nav_call"
+                    android:icon="@drawable/ic_call_black_24dp"
+                    android:title="Call Us" />
+                <!-- This will take the user to an email app to give us an email -->
+                <item
+                    android:id="@+id/nav_email"
+                    android:icon="@drawable/ic_email_black_24dp"
+                    android:title="Email Us" />
+            </menu>
+        </item>
     </group>
 
 </menu>

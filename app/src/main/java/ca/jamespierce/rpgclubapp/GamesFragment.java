@@ -91,6 +91,7 @@ public class GamesFragment extends Fragment {
         sectionPagerAdapter = new GamesSectionPagerAdapter((getChildFragmentManager()));
         viewPager = (ViewPager) view.findViewById(R.id.gamecontent);
         indicator = (CircleIndicator) view.findViewById(R.id.indicator);
+        // Enabling this causes the rotation from the first to the last item to cause the last item to disappear unless you slightly move the item left or right.
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.setAdapter(sectionPagerAdapter);
         indicator.setViewPager(viewPager);

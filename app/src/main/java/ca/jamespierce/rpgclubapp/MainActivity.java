@@ -1,5 +1,6 @@
 package ca.jamespierce.rpgclubapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     FragmentManager fm = getSupportFragmentManager();
     public static FloatingActionButton fab;
+    public String phoneNumber = "5195195199";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,20 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             tran.replace(R.id.content_main, new ClubInfoFragment());
             tran.commit();
+        } else if (id == R.id.nav_call) {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + phoneNumber));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        } else if (id == R.id.nav_email) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, "james.pierce82@stclairconnect.ca");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "RPG Club App");
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
