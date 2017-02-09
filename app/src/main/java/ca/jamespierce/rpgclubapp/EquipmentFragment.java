@@ -85,6 +85,7 @@ public class EquipmentFragment extends Fragment {
 
         final ArrayList<Equipment> equipmentList = new ArrayList<Equipment>();
 
+        list = (ListView) view.findViewById(R.id.equipmentListView);
         // Add items to the arraylist
         equipmentList.add(new Equipment("Pen or Pencil", "This is a writing utensil that you will need in order to write down and help keeptrack of your stats in your game of choice. You should bring a few spares in case you run out of ink or lead."));
         equipmentList.add(new Equipment("Character Sheets", "These are usually game specific. Bring your character sheet(If you have already made one), or bring an empty one if you still need to create a character."));
@@ -115,10 +116,10 @@ public class EquipmentFragment extends Fragment {
             if(convertView == null){
                 convertView =
                         LayoutInflater.from(getContext()).inflate(
-                                R.layout.item_view, parent, false);
+                                R.layout.equipment_view, parent, false);
             }
             // This is where we set the name textview value
-            TextView itemName = (TextView) convertView.findViewById(R.id.equipmentName);
+            TextView itemName = (TextView) convertView.findViewById(R.id.equipmentNameTextView);
             itemName.setText(item.getName());
             // This will be the image that opens a new page when tapped(Globe icon)
 //            ImageView image = (ImageView) convertView.findViewById(R.id.location);
