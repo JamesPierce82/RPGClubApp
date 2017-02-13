@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -81,24 +82,44 @@ public class EquipmentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
 
-        equipmentDescriptionTextview = (TextView) view.findViewById(R.id.descriptionText);
-
         final ArrayList<Equipment> equipmentList = new ArrayList<Equipment>();
 
         list = (ListView) view.findViewById(R.id.equipmentListView);
         // Add items to the arraylist
-        equipmentList.add(new Equipment("Pen or Pencil", "This is a writing utensil that you will need in order to write down and help keeptrack of your stats in your game of choice. You should bring a few spares in case you run out of ink or lead."));
-        equipmentList.add(new Equipment("Character Sheets", "These are usually game specific. Bring your character sheet(If you have already made one), or bring an empty one if you still need to create a character."));
-        equipmentList.add(new Equipment("Dice", "You should bring your dice sets. These range from sets of D6 to a full range of D2 - D20 or even D100(typically we use two D10's instead as a D100 is more like a golf ball and can take a while to stop."));
-        equipmentList.add(new Equipment("Character Model", "If you are playing a game that uses character models, make sure you bring one for your character. This is so that you can customize your character as you want."));
-        equipmentList.add(new Equipment("Index Cards", "These are useful for you to keep track of which spells or abilities your character has access to. They will save you some time digging into your PHB each time you need to use an ability and forget the specifics of how they work"));
-        equipmentList.add(new Equipment("Eraser", "This is a must for most games. You will be making modifications to your stats througout the night(Taking damage affecting hp, leveling up, etc)."));
-        equipmentList.add(new Equipment("Snacks", "Food! Bring something you can snack on without making a huge mess or requiring a full on dinner plate and you are set. Something you can share with the other gamer's at the table is even better!"));
+        equipmentList.add(new Equipment("Pen or Pencil", "This is a writing utensil that you will need in order to write down and help keeptrack of your stats in your game of choice. You should bring a few spares in case you run out of ink or lead.", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Character Sheets", "These are usually game specific. Bring your character sheet(If you have already made one), or bring an empty one if you still need to create a character.", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Dice", "You should bring your dice sets. These range from sets of D6 to a full range of D2 - D20 or even D100(typically we use two D10's instead as a D100 is more like a golf ball and can take a while to stop.", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Character Model", "If you are playing a game that uses character models, make sure you bring one for your character. This is so that you can customize your character as you want.", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Index Cards", "These are useful for you to keep track of which spells or abilities your character has access to. They will save you some time digging into your PHB each time you need to use an ability and forget the specifics of how they work", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Eraser", "This is a must for most games. You will be making modifications to your stats througout the night(Taking damage affecting hp, leveling up, etc).", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Snacks", "Food! Bring something you can snack on without making a huge mess or requiring a full on dinner plate and you are set. Something you can share with the other gamer's at the table is even better!", "https://www.google.ca"));
 
         // This assigns an adapter to the ArrayList above
         final EquipmentAdapter adapter = new EquipmentAdapter(getContext(), equipmentList);
         // This links the adapter to the List in the xml
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                equipmentDescriptionTextview = (TextView) view.findViewById(R.id.descriptionText);
+                TextView details = (TextView) view.findViewById(R.id.details);
+                ImageView chevron = (ImageView) view.findViewById(R.id.chevron);
+
+                if(equipmentDescriptionTextview.getText() != (equipmentList.get(position)).getDetails()) {
+                    // Updates the text of the decscription
+                    equipmentDescriptionTextview.setText(((Equipment) list.getItemAtPosition(position)).getDetails());
+                    // update the text of the show more
+                    details.setText("Click to show less");
+                    // update the chevron image
+                    chevron.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                } else {
+                    equipmentDescriptionTextview.setText("");
+                    details.setText("Click to show more");
+                    chevron.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                }
+
+            }
+        });
 
         return view;
     }
@@ -120,19 +141,18 @@ public class EquipmentFragment extends Fragment {
             // This is where we set the name textview value
             TextView itemName = (TextView) convertView.findViewById(R.id.equipmentNameTextView);
             itemName.setText(item.getName());
-            // *** - This will be the image that opens a new page when tapped(Globe icon)
-//            ImageView image = (ImageView) convertView.findViewById(R.id.location);
-//            image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Uri geoLocation = Uri.parse(item.getLocation());
-//                    Intent intent = new Intent(Intent.ACTION_VIEW);
-//                    intent.setData(geoLocation);
-//                    if(intent.resolveActivity(getActivity().getPackageManager()) != null) {
-//                        startActivity(intent);
-//                    }
-//                }
-//            });
+            // This will be the image that opens a new page when tapped(Globe icon)
+            ImageView image = (ImageView) convertView.findViewById(R.id.equipmentLinkImage);
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri webpage = Uri.parse(item.getLink());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                    if(intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
+            });
 
             return  convertView;
         }

@@ -9,11 +9,13 @@ public class Equipment {
     // Declare variables
     private String name;
     private String details;
+    private String link;
 
     //Constructor
-    public Equipment(String name, String details) {
+    public Equipment(String name, String details, String link) {
         this.name = name;
         this.details = details;
+        this.link = link;
     }
 
     //Getters and Setters
@@ -31,6 +33,14 @@ public class Equipment {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     // toString()
