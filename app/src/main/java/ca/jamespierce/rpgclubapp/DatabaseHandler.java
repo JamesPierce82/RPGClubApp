@@ -91,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // This is useful if we make any major changes to the database and need to reset everything
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGES;
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
         onCreate(db);
