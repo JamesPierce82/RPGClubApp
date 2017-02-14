@@ -86,13 +86,13 @@ public class EquipmentFragment extends Fragment {
 
         list = (ListView) view.findViewById(R.id.equipmentListView);
         // Add items to the arraylist
-        equipmentList.add(new Equipment("Pen or Pencil", "This is a writing utensil that you will need in order to write down and help keeptrack of your stats in your game of choice. You should bring a few spares in case you run out of ink or lead.", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Pen or Pencil", "This is a writing utensil that you will need in order to write down and help keeptrack of your stats in your game of choice. You should bring a few spares in case you run out of ink or lead.", "https://goo.gl/2KDzAr"));
         equipmentList.add(new Equipment("Character Sheets", "These are usually game specific. Bring your character sheet(If you have already made one), or bring an empty one if you still need to create a character.", "https://www.google.ca"));
-        equipmentList.add(new Equipment("Dice", "You should bring your dice sets. These range from sets of D6 to a full range of D2 - D20 or even D100(typically we use two D10's instead as a D100 is more like a golf ball and can take a while to stop.", "https://www.google.ca"));
-        equipmentList.add(new Equipment("Character Model", "If you are playing a game that uses character models, make sure you bring one for your character. This is so that you can customize your character as you want.", "https://www.google.ca"));
-        equipmentList.add(new Equipment("Index Cards", "These are useful for you to keep track of which spells or abilities your character has access to. They will save you some time digging into your PHB each time you need to use an ability and forget the specifics of how they work", "https://www.google.ca"));
-        equipmentList.add(new Equipment("Eraser", "This is a must for most games. You will be making modifications to your stats througout the night(Taking damage affecting hp, leveling up, etc).", "https://www.google.ca"));
-        equipmentList.add(new Equipment("Snacks", "Food! Bring something you can snack on without making a huge mess or requiring a full on dinner plate and you are set. Something you can share with the other gamer's at the table is even better!", "https://www.google.ca"));
+        equipmentList.add(new Equipment("Dice", "You should bring your dice sets. These range from sets of D6 to a full range of D2 - D20 or even D100(typically we use two D10's instead as a D100 is more like a golf ball and can take a while to stop.", "https://goo.gl/IZBzgI"));
+        equipmentList.add(new Equipment("Character Model", "If you are playing a game that uses character models, make sure you bring one for your character. This is so that you can customize your character as you want.", "https://goo.gl/RdHIfs"));
+        equipmentList.add(new Equipment("Index Cards", "These are useful for you to keep track of which spells or abilities your character has access to. They will save you some time digging into your PHB each time you need to use an ability and forget the specifics of how they work", "https://goo.gl/7AqTC8"));
+        equipmentList.add(new Equipment("Eraser", "This is a must for most games. You will be making modifications to your stats througout the night(Taking damage affecting hp, leveling up, etc).", "https://goo.gl/RISzwE"));
+        equipmentList.add(new Equipment("Snacks", "Food! Bring something you can snack on without making a huge mess or requiring a full on dinner plate and you are set. Something you can share with the other gamer's at the table is even better!", "https://goo.gl/ZUwUrJ"));
 
         // This assigns an adapter to the ArrayList above
         final EquipmentAdapter adapter = new EquipmentAdapter(getContext(), equipmentList);

@@ -1,0 +1,18 @@
+Database Tables
+
+Messages Table
+primary_key,
+author_key(matches primary_key in author), connects to the Author table
+timeSent,
+content,
+image_key(matches primary_key in avatar), connects to the Avatar table
+
+
+Author Table
+
+primary_key,
+name
+
+Avatar Table
+primary_key,
+image
