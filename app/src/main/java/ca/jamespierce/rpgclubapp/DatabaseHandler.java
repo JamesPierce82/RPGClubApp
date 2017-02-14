@@ -1,5 +1,6 @@
 package ca.jamespierce.rpgclubapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -81,11 +82,46 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
- 
+        db.execSQL(CREATE_MESSAGES_TABLE);
+        db.execSQL(CREATE_AUTHORS_TABLE);
+        db.execSQL(CREATE_IMAGES_TABLE);
     }
 
+    // This will drop all existing tables and create them from scratch
+    // This is useful if we make any major changes to the database and need to reset everything
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGES;
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_AUTHORS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
+        onCreate(db);
     }
+
+
+    /**
+     * CRUD OPERATIONS FOR THE DATABASE AND TABLES
+     * Create
+     * Read
+     * Update
+     * Delete
+     */
+
+    // I will need to create author and image classes, then implement them in the app
+    // correctly. Once that is done the database will be easier to implement correctly
+    public void addMessage(Message message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_AUTHOR_KEY, 1);
+        values.put(KEY_TIME, message.getTimeSent());
+        values.put(KEY_CONTENT, message.getContent());
+        values.put(KEY_IMAGE_KEY, message.getAvatar());
+        db.insert(TABLE_MESSAGES, null, values);
+    }
+
+
+
+
+
+
+
 }
