@@ -9,7 +9,7 @@ public class User {
     // Declare variables
     private String name;
     private int avatar;
-
+ 
     // Constructor
     public User(String name, int avatar) {
         this.name = name;
