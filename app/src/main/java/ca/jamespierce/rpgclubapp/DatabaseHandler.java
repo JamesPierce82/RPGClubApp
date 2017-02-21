@@ -2,8 +2,11 @@ package ca.jamespierce.rpgclubapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by web on 2017-02-14.
@@ -50,7 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     private static final String KEY_NAME = "name";
-    private static final String KEY_IMAGE = "image";
+    private static final String KEY_IMAGE = "avatar";
 
     /**
      * Create statments for all the tables
@@ -62,8 +65,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         + KEY_TIME + " DATETIME NOT NULL," + KEY_CONTENT + " TEXT)";
 
     private static final String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS
-                        + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT"
-                        + KEY_IMAGE + " BLOB)";
+                        + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME + " TEXT, "
+                        + KEY_IMAGE + " INTEGER)";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -72,8 +75,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_MESSAGES_TABLE);
         db.execSQL(CREATE_USERS_TABLE);
+        db.execSQL(CREATE_MESSAGES_TABLE);
+
     }
 
     // This will drop all existing tables and create them from scratch
@@ -97,14 +101,134 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // I will need to create author and image classes, then implement them in the app
     // correctly. Once that is done the database will be easier to implement correctly
-    public void addMessage(Message message, User user) {
+    public void addMessage(Message message) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(KEY_USER_KEY, message.getUser_id());
         values.put(KEY_TIME, message.getTimeSent());
         values.put(KEY_CONTENT, message.getContent());
-        values.put(KEY_USER_KEY, user.getId());
         db.insert(TABLE_MESSAGES, null, values);
     }
+
+    public void addUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, user.getName());
+        values.put(KEY_IMAGE, user.getAvatar());
+        db.insert(TABLE_USERS, null, values);
+    }
+
+    /**
+     * READ OPERATIONS
+     */
+
+    // get individual user
+    public User getUser(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        /**
+         * Create a cursor
+         * (Which is ableto move through and access database records)
+         * Have it store all the records retieved from the db.query()
+         * cursor starts by pointing at record 0
+         * Databases do not have a record 0
+         * we use cursor.moveToFirst() to have it at the first record returned
+         */
+        Cursor cursor = db.query(TABLE_USERS, new String[] {KEY_ID, KEY_NAME, KEY_IMAGE}, "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor != null)
+            cursor.moveToFirst();
+
+        /**
+         * We crate a location object usin the cursor record
+         */
+        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+        return user;
+    }
+
+    // get individual Message
+    public Message getMessage(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        /**
+         * Create a cursor
+         * (Which is ableto move through and access database records)
+         * Have it store all the records retieved from the db.query()
+         * cursor starts by pointing at record 0
+         * Databases do not have a record 0
+         * we use cursor.moveToFirst() to have it at the first record returned
+         */
+        Cursor cursor = db.query(TABLE_MESSAGES, new String[] {KEY_ID, KEY_USER_KEY, KEY_TIME, KEY_CONTENT}, "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor != null)
+            cursor.moveToFirst();
+
+        /**
+         * We create a location object using the cursor record
+         */
+        Message message = new Message(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)));
+        return message;
+    }
+
+    // get all messages
+    public ArrayList<Message> getAllMessages() {
+        ArrayList<Message> messageList = new ArrayList<Message>();
+        String selectQuery = "SELECT * FROM " + TABLE_MESSAGES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToFirst()) {
+            do {
+                Message message = new Message();
+                message.setId(Integer.parseInt(cursor.getString(0)));
+                message.setUser_id(Integer.parseInt(cursor.getString(1)));
+                message.setTimeSent(cursor.getString(2));
+                message.setContent(cursor.getString(3));
+                messageList.add(message);
+            }while(cursor.moveToNext());
+        }
+
+        return messageList;
+    }
+
+    /**
+     * UPDATE OPERATIONS
+     */
+
+    // Update the Message
+    public int updateMessage(Message message) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_KEY, message.getUser_id());
+        values.put(KEY_TIME, message.getTimeSent());
+        values.put(KEY_CONTENT, message.getContent());
+        return db.update(TABLE_MESSAGES, values, KEY_ID + " = ?",
+                new String[] {String.valueOf(message.getId())});
+    }
+
+    // Update the User
+    public int updateUser(User user) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, user.getName());
+        values.put(KEY_IMAGE, user.getAvatar());
+        return db.update(TABLE_USERS, values, KEY_ID + " = ?",
+                new String[] {String.valueOf(user.getId())});
+    }
+
+    /**
+     * DELETE OPERATIONS
+     */
+
+    // Delete a Message
+    public void deleteMessage(long message_id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_MESSAGES, KEY_ID + " = ?",
+                new String[] {String.valueOf(message_id)});
+    }
+
+    // Delete a User
+    public void deleteUser(long user_id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_USERS, KEY_ID + " = ?",
+                new String[] {String.valueOf(user_id)});
+    }
+
 
 
     /**

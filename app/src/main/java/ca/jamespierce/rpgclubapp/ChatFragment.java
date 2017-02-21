@@ -116,7 +116,7 @@ public class ChatFragment extends Fragment {
         rvMessages = (RecyclerView) view.findViewById(R.id.chatList);
 
         // Create an ArrayList that holds messages
-        final ArrayList<Message> messageList = new ArrayList<Message>();
+//        final ArrayList<Message> messageList = new ArrayList<Message>();
 
         // Add messages to the arraylist
         // Passes Name, Time set, Message, and the ID of the image to be used as an avatar
@@ -141,8 +141,29 @@ public class ChatFragment extends Fragment {
 //        messageList.add(new Message("Charlie", "Jan 24, 2017 9:44pm", "Yeah, we worked really hard to get all the information together. We actually draw all that information from our chat system so that it changes dynamically if somebody changes role(if I were to leave the VP role, I would automatically update to become a member)...", R.drawable.charlie));
 //        messageList.add(new Message("Sally", "Jan 25, 2017 8:12am", "Very awesome! Looking forward to what you guys add next!", R.drawable.sally));
 
+
         DatabaseHandler db = new DatabaseHandler(getContext());
-//        final ArrayList<Message> locationslist = db.getAllLocations();
+        final ArrayList<Message> messageList = db.getAllMessages();
+
+        // These lines are to fill the database with information. Only needs to be run once.
+//        User james = new User("James", R.drawable.james);
+//        User bob = new User("Bob", R.drawable.bob);
+//        User charlie = new User("Charlie", R.drawable.charlie);
+//        User emily = new User("Emily", R.drawable.emily);
+//        User george = new User("George", R.drawable.george);
+//        User sally = new User("Sally", R.drawable.sally);
+
+//        // These lines add the users to the database
+//        db.addUser(james);
+//        db.addUser(bob);
+//        db.addUser(charlie);
+//        db.addUser(emily);
+//        db.addUser(george);
+//        db.addUser(sally);
+
+        Message message1 = new Message();
+//        db.addMessage(new Message(), new User());
+
         db.closeDB();
 
         final MessagesAdapter adapter = new MessagesAdapter(this.getContext(), messageList);
@@ -163,7 +184,10 @@ public class ChatFragment extends Fragment {
                 currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
                 // This will add the message to the messageList.
-//                messageList.add(new Message(userName, currentDateTimeString, newMessage, userAvatar));
+
+                DatabaseHandler db = new DatabaseHandler(getContext());
+                db.addMessage(new Message(currentDateTimeString, newMessage, 1));
+                messageList.add(new Message(currentDateTimeString, newMessage, 1));
 
                 // This will update the adapter so that the new message will be displayed on the screen
                 // This will update the view adapter
@@ -177,6 +201,7 @@ public class ChatFragment extends Fragment {
 
         return view;
     }
+
 
 
 

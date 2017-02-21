@@ -2,10 +2,9 @@ Database Tables
 
 Messages Table
 primary_key,
-author_key(matches primary_key in user), connects to the Author table
+user_key(matches primary_key in user), connects to the Author table
 timeSent,
-content,
-image_key(matches primary_key in user), connects to the Avatar table
+content
 
 
 User Table

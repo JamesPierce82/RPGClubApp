@@ -76,10 +76,12 @@ public class MessagesAdapter extends
     public void onBindViewHolder(MessagesAdapter.ViewHolder viewHolder, int position) {
         // Gets the item from the current position
         Message message = mMessages.get(position);
-
+        DatabaseHandler db = new DatabaseHandler(getContext());
         // Set the text values for the message being displayed
         TextView name = (TextView) viewHolder.name;
-        name.setText(message.getName());
+        name.setText("Temp");
+        Message msg = mMessages.get(position);
+       // name.setText(db.getUser(msg.getUser_id()).getName());
         TextView time = (TextView) viewHolder.time;
         time.setText(message.getTimeSent());
         TextView messageContent = (TextView) viewHolder.message;
@@ -87,7 +89,7 @@ public class MessagesAdapter extends
 
         // Sets the avatar using the resource id of the drawable image stored in the message
         ImageView avatar = (ImageView) viewHolder.avatar;
-        avatar.setImageResource(message.getAvatar());
+//        avatar.setImageResource(1);
     }
 
     // Returns the total count of items in the list

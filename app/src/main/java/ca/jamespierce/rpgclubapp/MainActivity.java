@@ -121,8 +121,13 @@ public class MainActivity extends AppCompatActivity
             tran.replace(R.id.content_main, new ChatFragment());
             tran.commit();
         } else if (id == R.id.nav_about) {
-            tran.replace(R.id.content_main, new ClubInfoFragment());
-            tran.commit();
+           DatabaseHandler db = new DatabaseHandler(getBaseContext());
+            db.addUser(new User("John", R.drawable.bob));
+            db.addUser(new User("James", R.drawable.emily));
+            db.addUser(new User("Jonah", R.drawable.james));
+            db.closeDB();
+
+
         } else if (id == R.id.nav_call) {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + phoneNumber));
