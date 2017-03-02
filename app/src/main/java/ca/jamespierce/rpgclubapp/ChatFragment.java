@@ -140,8 +140,8 @@ public class ChatFragment extends Fragment {
                 // This will add the message to the messageList.
 
                 DatabaseHandler db = new DatabaseHandler(getContext());
-                db.addMessage(new Message(currentDateTimeString, newMessage, 1));
-                messageList.add(new Message(currentDateTimeString, newMessage, 1));
+                db.addMessage(new Message(currentDateTimeString, newMessage, 2));
+                messageList.add(new Message(currentDateTimeString, newMessage, 2));
 
                 // This will update the adapter so that the new message will be displayed on the screen
                 // This will update the view adapter

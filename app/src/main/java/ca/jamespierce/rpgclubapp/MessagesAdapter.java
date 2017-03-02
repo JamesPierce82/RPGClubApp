@@ -82,7 +82,7 @@ public class MessagesAdapter extends
         TextView name = viewHolder.name;
 
         // This sets it to a string of the user id.
-        name.setText(("" + message.getUser_id()));
+        name.setText((db.getUser(message.getUser_id()).getName()));
 
         // Set the time sent of the message
         TextView time = viewHolder.time;

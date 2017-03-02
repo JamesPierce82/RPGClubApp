@@ -132,14 +132,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          * Databases do not have a record 0
          * we use cursor.moveToFirst() to have it at the first record returned
          */
-        Cursor cursor = db.query(TABLE_USERS, new String[] {KEY_ID, KEY_NAME, KEY_IMAGE}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
-        if(cursor != null)
-            cursor.moveToFirst();
+        User user = null;
+        Cursor firstCursor = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
+        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_ID, KEY_NAME, KEY_IMAGE},  KEY_ID + " = " + String.valueOf(id), null, null, null, null, null);
+        if(cursor.moveToFirst()){
+            user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+        }
+
 
         /**
-         * We crate a location object usin the cursor record
+         * We crate a User object usin the cursor record
          */
-        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+
 //        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
         return user;
     }
@@ -160,7 +164,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         /**
-         * We create a location object using the cursor record
+         * We create a user object using the cursor record
          */
         Message message = new Message(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)));
         return message;

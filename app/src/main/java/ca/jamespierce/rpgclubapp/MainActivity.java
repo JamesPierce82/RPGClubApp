@@ -150,26 +150,26 @@ public class MainActivity extends AppCompatActivity
             db.addUser(new User("Sally", R.drawable.sally));
 
             // Add all the messages required for the chat client to the Messages table
-            db.addMessage(new Message("Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", 1));
-            db.addMessage(new Message("Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides club stuff?", 0));
-            db.addMessage(new Message("Jan 12, 2017 2:23pm", "Sure, why not! Just keep it appropriate.", 1));
-            db.addMessage(new Message("Jan 13, 2017 9:54am", "When is the next Orbs and Orcs night?", 2));
+            db.addMessage(new Message("Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", 2));
+            db.addMessage(new Message("Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides club stuff?", 1));
+            db.addMessage(new Message("Jan 12, 2017 2:23pm", "Sure, why not! Just keep it appropriate.", 2));
+            db.addMessage(new Message("Jan 13, 2017 9:54am", "When is the next Orbs and Orcs night?", 3));
             db.addMessage(new Message("Jan 13, 2017 10:27pm", "Thats a week from tuesday, starting at 7pm. We usually go until 1 or 2 am so I hope you're up for a late night and early morning! I know you have class at 8am the next day.", 1));
-            db.addMessage(new Message("Jan 13, 2017 10:33pm", "Awesome. Put me down as being there, I'll bring some nacho dip.", 2));
-            db.addMessage(new Message("Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", 0));
-            db.addMessage(new Message("Jan 15, 2017 9:44am", "It was supposed to be due thursday, but only 'tentatively'. He hasn't said for sure yet.", 2));
-            db.addMessage(new Message("Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", 0));
-            db.addMessage(new Message("Jan 16, 2017 12:03pm", "Do you guys still play Trailspotter?", 3));
-            db.addMessage(new Message("Jan 16, 2017 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", 1));
-            db.addMessage(new Message("Jan 16, 2017 12:11pm", "Okay cool. When do you guys play that?", 3));
-            db.addMessage(new Message("Jan 17, 2017 1:14am", "We actually have that information listed in the About the Club", 1));
-            db.addMessage(new Message("Jan 22, 2017 4:14pm", "Where are the meeting times for Call to ChooChoo? I thought somebody said they were in the About The Club section of that app...", 4));
-            db.addMessage(new Message("Jan 22, 2017 4:23pm", "Those were recently moved to the RPG Games section. We figured it would make more sense to have the times listed there instead.", 1));
-            db.addMessage(new Message("Jan 22, 2017 4:25pm", "Oh, okay. That does make a lot more sense.", 4));
-            db.addMessage(new Message("Jan 22, 2017 4:33pm", "We will be adding information about all of our members to the About The Club section instead soon!", 1));
-            db.addMessage(new Message("Jan 24, 2017 5:12pm", "Oh cool! I love the update, it looks like we're all listed now, and it even shows our roles in the club!", 5));
-            db.addMessage(new Message("Jan 24, 2017 9:44pm", "Yeah, we worked really hard to get all the information together. We actually draw all that information from our chat system so that it changes dynamically if somebody changes role(if I were to leave the VP role, I would automatically update to become a member)...", 2));
-            db.addMessage(new Message("Jan 25, 2017 8:12am", "Very awesome! Looking forward to what you guys add next!", 5));
+            db.addMessage(new Message("Jan 13, 2017 10:33pm", "Awesome. Put me down as being there, I'll bring some nacho dip.", 3));
+            db.addMessage(new Message("Jan 15, 2017 3:33am", "Does anyone know when the android homework is due? I thought it was due thursday", 1));
+            db.addMessage(new Message("Jan 15, 2017 9:44am", "It was supposed to be due thursday, but only 'tentatively'. He hasn't said for sure yet.", 3));
+            db.addMessage(new Message("Jan 15, 2017 10:15am", "Oh, alright. I guess I should get started then eh?", 1));
+            db.addMessage(new Message("Jan 16, 2017 12:03pm", "Do you guys still play Trailspotter?", 4));
+            db.addMessage(new Message("Jan 16, 2017 12:07pm", "Yes we do, If you open the navigation menu on the left and select the 'RPG Games' tab you can see the different games that we play.", 2));
+            db.addMessage(new Message("Jan 16, 2017 12:11pm", "Okay cool. When do you guys play that?", 4));
+            db.addMessage(new Message("Jan 17, 2017 1:14am", "We actually have that information listed in the About the Club", 2));
+            db.addMessage(new Message("Jan 22, 2017 4:14pm", "Where are the meeting times for Call to ChooChoo? I thought somebody said they were in the About The Club section of that app...", 5));
+            db.addMessage(new Message("Jan 22, 2017 4:23pm", "Those were recently moved to the RPG Games section. We figured it would make more sense to have the times listed there instead.", 2));
+            db.addMessage(new Message("Jan 22, 2017 4:25pm", "Oh, okay. That does make a lot more sense.", 5));
+            db.addMessage(new Message("Jan 22, 2017 4:33pm", "We will be adding information about all of our members to the About The Club section instead soon!", 2));
+            db.addMessage(new Message("Jan 24, 2017 5:12pm", "Oh cool! I love the update, it looks like we're all listed now, and it even shows our roles in the club!", 6));
+            db.addMessage(new Message("Jan 24, 2017 9:44pm", "Yeah, we worked really hard to get all the information together. We actually draw all that information from our chat system so that it changes dynamically if somebody changes role(if I were to leave the VP role, I would automatically update to become a member)...", 3));
+            db.addMessage(new Message("Jan 25, 2017 8:12am", "Very awesome! Looking forward to what you guys add next!", 6));
             db.closeDB();
         }
 
