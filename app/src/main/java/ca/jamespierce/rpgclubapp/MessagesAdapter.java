@@ -94,7 +94,7 @@ public class MessagesAdapter extends
 
         // Sets the avatar using the resource id of the drawable image stored in the message
         ImageView avatar = viewHolder.avatar;
-//        avatar.setImageResource(db.getUser(message.getUser_id()).getAvatar());
+        avatar.setImageResource(db.getUser(message.getUser_id()).getAvatar());
     }
 
     // Returns the total count of items in the list
