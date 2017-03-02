@@ -126,8 +126,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         /**
          * Create a cursor
-         * (Which is ableto move through and access database records)
-         * Have it store all the records retieved from the db.query()
+         * (Which is able to move through and access database records)
+         * Have it store all the records retrieved from the db.query()
          * cursor starts by pointing at record 0
          * Databases do not have a record 0
          * we use cursor.moveToFirst() to have it at the first record returned
@@ -148,8 +148,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         /**
          * Create a cursor
-         * (Which is ableto move through and access database records)
-         * Have it store all the records retieved from the db.query()
+         * (Which is able to move through and access database records)
+         * Have it store all the records retrieved from the db.query()
          * cursor starts by pointing at record 0
          * Databases do not have a record 0
          * we use cursor.moveToFirst() to have it at the first record returned
