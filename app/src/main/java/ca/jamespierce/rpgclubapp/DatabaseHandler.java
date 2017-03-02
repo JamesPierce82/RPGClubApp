@@ -132,7 +132,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          * Databases do not have a record 0
          * we use cursor.moveToFirst() to have it at the first record returned
          */
-        Cursor cursor = db.query(TABLE_USERS, new String[] {KEY_ID, KEY_NAME, KEY_IMAGE}, "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_USERS, new String[] {KEY_ID, KEY_NAME, KEY_IMAGE}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
 
@@ -140,6 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          * We crate a location object usin the cursor record
          */
         User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
+//        User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)));
         return user;
     }
 
