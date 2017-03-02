@@ -41,6 +41,16 @@
                     android:title="Email Us" />
             </menu>
         </item>
+        <item android:title="Database Creation">
+            <menu>
+                <!-- This will take the user to the phone app to give us a call -->
+                <item
+                    android:id="@+id/nav_databaseSetup"
+                    android:icon="@drawable/ic_poll_black_24dp"
+                    android:title="Add entries to Databases" />
+
+            </menu>
+        </item>
     </group>
 
 </menu>
