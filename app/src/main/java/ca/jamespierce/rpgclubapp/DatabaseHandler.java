@@ -60,12 +60,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
 
     private static final String CREATE_MESSAGES_TABLE = "CREATE TABLE " + TABLE_MESSAGES
-                        + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_KEY
+                        + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_USER_KEY
                         + " INTEGER REFERENCES " + TABLE_USERS + "(" + KEY_ID + "),"
                         + KEY_TIME + " DATETIME NOT NULL," + KEY_CONTENT + " TEXT)";
 
     private static final String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS
-                        + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME + " TEXT, "
+                        + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME + " TEXT, "
                         + KEY_IMAGE + " INTEGER)";
 
     public DatabaseHandler(Context context) {
@@ -99,8 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Delete
      */
 
-    // I will need to create author and image classes, then implement them in the app
-    // correctly. Once that is done the database will be easier to implement correctly
+
     public void addMessage(Message message) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

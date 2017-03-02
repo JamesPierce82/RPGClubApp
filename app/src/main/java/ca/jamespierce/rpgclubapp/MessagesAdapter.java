@@ -77,19 +77,24 @@ public class MessagesAdapter extends
         // Gets the item from the current position
         Message message = mMessages.get(position);
         DatabaseHandler db = new DatabaseHandler(getContext());
-        // Set the text values for the message being displayed
-        TextView name = (TextView) viewHolder.name;
-        name.setText("Temp");
-        Message msg = mMessages.get(position);
-       // name.setText(db.getUser(msg.getUser_id()).getName());
-        TextView time = (TextView) viewHolder.time;
+
+        // Set the Name for each message based on the userID of the current message
+        TextView name = viewHolder.name;
+
+        // This sets it to a string of the user id.
+        name.setText(("" + message.getUser_id()));
+
+        // Set the time sent of the message
+        TextView time = viewHolder.time;
         time.setText(message.getTimeSent());
-        TextView messageContent = (TextView) viewHolder.message;
+
+        // Set the content of the message
+        TextView messageContent = viewHolder.message;
         messageContent.setText(message.getContent());
 
         // Sets the avatar using the resource id of the drawable image stored in the message
-        ImageView avatar = (ImageView) viewHolder.avatar;
-//        avatar.setImageResource(1);
+        ImageView avatar = viewHolder.avatar;
+//        avatar.setImageResource(db.getUser(message.getUser_id()).getAvatar());
     }
 
     // Returns the total count of items in the list
