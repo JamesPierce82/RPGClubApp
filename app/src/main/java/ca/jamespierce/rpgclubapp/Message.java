@@ -10,29 +10,37 @@ import android.widget.ImageView;
 public class Message {
 
     // Declare variables
-    private String name;
+    private int id;
     private String timeSent;
     private String content;
-    private int avatar;
+    private int user_id;
 
-    // Constructor
-    public Message(String name, String timeSent, String content, int avatar) {
-        this.name = name;
+    // Constructors
+    public Message() {
+
+    }
+
+    public Message(String timeSent, String content, int user_id) {
         this.timeSent = timeSent;
         this.content = content;
-        this.avatar = avatar;
+        this.user_id = user_id;
     }
 
-    // toString()
-    public String toString() { return getName();}
+    public Message(int id, String timeSent, String content, int user_id) {
+        this.id = id;
+        this.timeSent = timeSent;
+        this.content = content;
+        this.user_id = user_id;
+    }
 
     // Getters and Setters
-    public String getName() {
-        return name;
+
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTimeSent() {
@@ -51,11 +59,11 @@ public class Message {
         this.content = content;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

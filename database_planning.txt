@@ -1,0 +1,13 @@
+Database Tables
+
+Messages Table
+primary_key,
+user_key(matches primary_key in user), connects to the Author table
+timeSent,
+content
+
+
+User Table
+primary_key,
+name
+image
