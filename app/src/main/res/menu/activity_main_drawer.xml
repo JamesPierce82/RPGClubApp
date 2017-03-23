@@ -19,9 +19,14 @@
             android:title="Equipment To Bring" />
         <!-- This is the menu item that takes the user to the "chat page"-->
         <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_record_voice_over_black_24dp"
-            android:title="Chat" />
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_record_voice_over_black_24dp"
+        android:title="Chat" />
+        <!-- This is the menu item that takes the user to view the "club photos"-->
+        <item
+            android:id="@+id/nav_photos"
+            android:icon="@drawable/ic_photo_black_24dp"
+            android:title="Club Photos" />
         <!-- This is the menu item that takes the user to the "about the club page"-->
         <item
             android:id="@+id/nav_about"
