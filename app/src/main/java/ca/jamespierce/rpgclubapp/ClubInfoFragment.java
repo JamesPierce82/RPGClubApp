@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import static ca.jamespierce.rpgclubapp.MainActivity.fab;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +85,7 @@ public class ClubInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_club_info, container, false);
+        fab.hide();
 
         // This will set the PagerAdapter to the adapter built for the Member information
         mSectionPagerAdapter = new MemberSectionPagerAdapter((getChildFragmentManager()));
