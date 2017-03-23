@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
             db.addUser(new User("George", R.drawable.george));
             db.addUser(new User("Sally", R.drawable.sally));
 
+            
             // Add all the messages required for the chat client to the Messages table
             db.addMessage(new Message("Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", 2));
             db.addMessage(new Message("Jan 12, 2017 2:22pm", "This is pretty cool, can we talk about other things besides club stuff?", 1));
