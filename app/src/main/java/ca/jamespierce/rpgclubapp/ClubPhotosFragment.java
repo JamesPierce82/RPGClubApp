@@ -125,19 +125,20 @@ public class ClubPhotosFragment extends Fragment {
              * Add the photo to the database
              */
             DatabaseHandler db = new DatabaseHandler(getContext());
-            int picID = db.addPicture(new Picture(imageLocation));
-            if(picID != -1){
-                // This should be removed. Should not require this as we are only adding the image to one table.
-                // Can use this to produce a toast message though.
-//                Location location = (Location) spin.getSelectedItem();
-//                db.addImageLocation(picID, location.getId());
-                Toast.makeText(getActivity(), "Photo Added",
-                        Toast.LENGTH_LONG).show();
-            }
-            else{
-                Toast.makeText(getActivity(), "Photo Not Added",
-                        Toast.LENGTH_LONG).show();
-            }
+            //TODO: UNCOMMENT ALL OF THIS
+//            int picID = db.addPicture(new Picture(imageLocation));
+//            if(picID != -1){
+//                // This should be removed. Should not require this as we are only adding the image to one table.
+//                // Can use this to produce a toast message though.
+////                Location location = (Location) spin.getSelectedItem();
+////                db.addImageLocation(picID, location.getId());
+//                Toast.makeText(getActivity(), "Photo Added",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//            else{
+//                Toast.makeText(getActivity(), "Photo Not Added",
+//                        Toast.LENGTH_LONG).show();
+//            }
 
             /*
              * Refer to the Chat window to see how to refresh list content.
