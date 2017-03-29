@@ -151,11 +151,13 @@ public class ChatFragment extends Fragment {
 
                 // This will clear the editText
                 messageContent.setText("");
+                // THis forces the app to skip to the newest message after sending a message.
                 rvMessages.scrollToPosition(adapter.getItemCount() -1);
             }
         });
 
-
+        // This should force the app to skip to the bottom of the chat upon loading.
+        rvMessages.scrollToPosition(adapter.getItemCount() -1);
         return view;
     }
 
