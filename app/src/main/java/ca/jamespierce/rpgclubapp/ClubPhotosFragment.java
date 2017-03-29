@@ -108,6 +108,8 @@ public class ClubPhotosFragment extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
@@ -128,10 +130,6 @@ public class ClubPhotosFragment extends Fragment {
             //TODO: UNCOMMENT ALL OF THIS
             int picID = db.addPicture(new Picture(imageLocation));
             if(picID != -1){
-                // This should be removed. Should not require this as we are only adding the image to one table.
-                // Can use this to produce a toast message though.
-//                Location location = (Location) spin.getSelectedItem();
-//                db.addImageLocation(picID, location.getId());
                 Toast.makeText(getActivity(), "Photo Added",
                         Toast.LENGTH_LONG).show();
             }
