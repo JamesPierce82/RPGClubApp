@@ -9,16 +9,20 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 import static ca.jamespierce.rpgclubapp.MainActivity.fab;
@@ -113,6 +117,82 @@ public class ClubPhotosFragment extends Fragment {
         return view;
     }
 
+    /**
+     * description This is the adapter class I use for the messages and the RecyclerView.
+     */
+    public class PicturesAdapter extends
+            RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            // Declare variables for the items to display in each row
+            public CardView picture;
+
+            // Constructor for the view
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                picture = (CardView) itemView.findViewById(R.id.clubPhotoFrame);
+            }
+        }
+
+        // Creates a list to store the all of the messages
+        private List<Picture> mPictures;
+        private Context mContext;
+
+        // Pass the array of messages
+        public PicturesAdapter(Context context, List<Picture> pictures) {
+            mPictures = pictures;
+            mContext = context;
+        }
+
+        /**
+         *
+         * @return mContext - Returns the context when needed
+         */
+        private Context getContext() {
+            return mContext;
+        }
+
+
+        @Override
+        public PicturesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            Context context = parent.getContext();
+            LayoutInflater inflater = LayoutInflater.from(context);
+
+            View contactView = inflater.inflate(R.layout.picture_view, parent, false);
+
+            PicturesAdapter.ViewHolder viewHolder = new PicturesAdapter.ViewHolder(contactView);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(PicturesAdapter.ViewHolder viewHolder, int position) {
+            // Gets the item from the current position
+
+            //TODO This may need to be redone later if it doesn't work as intended
+//            Picture currentPicture = mPictures.get(position);
+            DatabaseHandler db = new DatabaseHandler(getContext());
+            Picture picture = db.getPicture(position);
+
+
+            // This will set the id of the image in each cardview to be displayed
+            CardView pictureHolder = viewHolder.picture;
+
+            Bitmap image = BitmapFactory.decodeFile(picture.getResource());
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageBitmap(image);
+            imageView.setAdjustViewBounds(true);
+            pictureHolder.addView(imageView);
+
+        }
+
+        // Returns the total count of items in the list
+        @Override
+        public int getItemCount() {
+            return mPictures.size();
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,7 +207,7 @@ public class ClubPhotosFragment extends Fragment {
              * Add the photo to the database
              */
             DatabaseHandler db = new DatabaseHandler(getContext());
-            //TODO: UNCOMMENT ALL OF THIS
+
             int picID = db.addPicture(new Picture(imageLocation));
             if(picID != -1){
                 Toast.makeText(getActivity(), "Photo Added",

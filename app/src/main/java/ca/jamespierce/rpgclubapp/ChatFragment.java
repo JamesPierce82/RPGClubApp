@@ -166,7 +166,6 @@ public class ChatFragment extends Fragment {
 
     /**
      * description This is the adapter class I use for the messages and the RecyclerView.
-     * This was put in a separate class file because of the static inner class having issues when in the ChatFragment.
      */
     public class MessagesAdapter extends
             RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
