@@ -106,11 +106,10 @@ public class ClubPhotosFragment extends Fragment {
                 if(i.resolveActivity(getActivity().getPackageManager()) != null){
                     startActivityForResult(i, CAMERA_INTENT);
                 }
-
-
-
             }
         });
+
+
 
 
 
