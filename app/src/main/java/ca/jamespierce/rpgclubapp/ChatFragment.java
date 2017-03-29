@@ -151,6 +151,7 @@ public class ChatFragment extends Fragment {
 
                 // This will clear the editText
                 messageContent.setText("");
+                rvMessages.scrollToPosition(adapter.getItemCount() -1);
             }
         });
 
