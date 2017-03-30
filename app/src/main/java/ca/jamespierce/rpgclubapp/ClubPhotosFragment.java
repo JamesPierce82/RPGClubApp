@@ -39,18 +39,18 @@ import static ca.jamespierce.rpgclubapp.MainActivity.fab;
  * create an instance of this fragment.
  */
 public class ClubPhotosFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private static final int CAMERA_INTENT = 1;
     private String imageLocation;
     RecyclerView rvPictures;
+
+    public PicturesAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,7 +66,6 @@ public class ClubPhotosFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ClubPhotosFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ClubPhotosFragment newInstance(String param1, String param2) {
         ClubPhotosFragment fragment = new ClubPhotosFragment();
         Bundle args = new Bundle();
@@ -101,7 +100,7 @@ public class ClubPhotosFragment extends Fragment {
 
         db.closeDB();
 
-        final PicturesAdapter adapter = new PicturesAdapter(this.getContext(), pictureList);
+        adapter = new PicturesAdapter(this.getContext(), pictureList);
 
         // Attach the adapter to the recyclerview to populate items
         rvPictures.setAdapter(adapter);
@@ -186,12 +185,10 @@ public class ClubPhotosFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(PicturesAdapter.ViewHolder viewHolder, int position) {
-            // Gets the item from the current position
 
-            //TODO This may need to be redone later if it doesn't work as intended
-//            Picture currentPicture = mPictures.get(position);
             DatabaseHandler db = new DatabaseHandler(getContext());
             Picture picture = db.getPicture(position);
+            db.closeDB();
 
 
             // This will set the id of the image in each cardview to be displayed
@@ -204,7 +201,8 @@ public class ClubPhotosFragment extends Fragment {
             imageView.setAdjustViewBounds(true);
             pictureHolder.addView(imageView);
 
-
+            //TODO figure out where to put the adapter.notifyDataSetUpdated() method.
+            // It is currently global so that I can put it anywhere, as I could not get it to work inside the FAB event listener.
         }
 
         // Returns the total count of items in the list
@@ -276,7 +274,6 @@ public class ClubPhotosFragment extends Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -311,7 +308,6 @@ public class ClubPhotosFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
