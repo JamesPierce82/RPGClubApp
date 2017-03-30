@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class ClubPhotosFragment extends Fragment {
 
     private static final int CAMERA_INTENT = 1;
     private String imageLocation;
+    RecyclerView rvPictures;
 
     private OnFragmentInteractionListener mListener;
 
@@ -109,6 +112,22 @@ public class ClubPhotosFragment extends Fragment {
             }
         });
 
+        DatabaseHandler db = new DatabaseHandler(getContext());
+
+        // Programmatically link recyclerview
+        rvPictures = (RecyclerView) view.findViewById(R.id.clubPictureList);
+        final ArrayList<Picture> pictureList = db.getAllPictures();
+
+        db.closeDB();
+
+        final PicturesAdapter adapter = new PicturesAdapter(this.getContext(), pictureList);
+
+        // Attach the adapter to the recyclerview to populate items
+        rvPictures.setAdapter(adapter);
+
+        // Set the layoutManager to position the items
+
+        rvPictures.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
 
@@ -177,11 +196,14 @@ public class ClubPhotosFragment extends Fragment {
             // This will set the id of the image in each cardview to be displayed
             CardView pictureHolder = viewHolder.picture;
 
+            // This is a copy of code used in class to programmatically add an imageView to the app
             Bitmap image = BitmapFactory.decodeFile(picture.getResource());
             ImageView imageView = new ImageView(getContext());
             imageView.setImageBitmap(image);
             imageView.setAdjustViewBounds(true);
             pictureHolder.addView(imageView);
+
+
 
         }
 

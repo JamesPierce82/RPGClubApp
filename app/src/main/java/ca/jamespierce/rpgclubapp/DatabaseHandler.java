@@ -85,6 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_MESSAGES_TABLE);
+        db.execSQL(CREATE_PICTURES_TABLE);
 
     }
 
@@ -218,6 +219,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Picture getPicture(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
+        // This is a test, increase id by one for accessing database
+        id++;
+
         Cursor cursor = db.query(TABLE_PICTURES, new String[] {KEY_ID, COLUMN_RESOURCE}, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
@@ -231,12 +235,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList<Picture> getAllPictures() {
         ArrayList<Picture> pictureList = new ArrayList<Picture>();
-        String selectQuery = "SELECT  * FROM " + TABLE_PICTURES;
+        String selectQuery = "SELECT * FROM " + TABLE_PICTURES;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
+
+            System.out.println("Moved to first");
             do {
                 Picture picture = new Picture();
                 picture.setId(Integer.parseInt(cursor.getString(0)));
