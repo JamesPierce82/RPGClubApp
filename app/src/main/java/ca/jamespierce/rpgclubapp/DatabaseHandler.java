@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String TABLE_MESSAGES = "message";
     private static final String TABLE_USERS = "users";
-    private static final String TABLE_IMAGES = "image";
+    private static final String TABLE_PICTURES = "picture";
 
     /**
      * Common column names
@@ -47,6 +47,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_TIME = "timesent";
     private static final String KEY_CONTENT = "content";
     private static final String KEY_USER_KEY = "user_key";
+
+    /**
+     *Picture Table Column Names
+     */
+    private static final String COLUMN_RESOURCE = "resource";
 
     /**
      * User Table column names
@@ -68,6 +73,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME + " TEXT, "
                         + KEY_IMAGE + " INTEGER)";
 
+    private static final String CREATE_PICTURES_TABLE = "CREATE TABLE " + TABLE_PICTURES + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COLUMN_RESOURCE + " TEXT" + ")";
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -77,6 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_MESSAGES_TABLE);
+        db.execSQL(CREATE_PICTURES_TABLE);
 
     }
 
@@ -86,7 +95,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PICTURES);
         onCreate(db);
     }
 
@@ -115,6 +124,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NAME, user.getName());
         values.put(KEY_IMAGE, user.getAvatar());
         db.insert(TABLE_USERS, null, values);
+    }
+
+    //We modified addPicture to return the rowNumber it was added into
+    public int addPicture(Picture picture) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RESOURCE, picture.getResource());
+        db.insert(TABLE_PICTURES, null, values);
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT last_insert_rowid()", null);
+        if(cursor.moveToFirst()) {
+            int location = Integer.parseInt(cursor.getString(0));
+            System.out.println("Record ID " + location);
+            db.close();
+            return location;
+        }
+        return -1;
     }
 
     /**
@@ -190,6 +216,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return messageList;
     }
 
+    public Picture getPicture(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // This is a test, increase id by one for accessing database
+        id++;
+
+        Cursor cursor = db.query(TABLE_PICTURES, new String[] {KEY_ID, COLUMN_RESOURCE}, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Picture picture = new Picture(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+
+        return picture;
+    }
+
+    public ArrayList<Picture> getAllPictures() {
+        ArrayList<Picture> pictureList = new ArrayList<Picture>();
+        String selectQuery = "SELECT * FROM " + TABLE_PICTURES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+
+            System.out.println("Moved to first");
+            do {
+                Picture picture = new Picture();
+                picture.setId(Integer.parseInt(cursor.getString(0)));
+                picture.setResource(cursor.getString(1));
+                pictureList.add(picture);
+            } while (cursor.moveToNext());
+        }
+        return pictureList;
+    }
+
     /**
      * UPDATE OPERATIONS
      */
@@ -215,6 +278,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] {String.valueOf(user.getId())});
     }
 
+    public int updatePicture(Picture picture) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RESOURCE, picture.getResource());
+        return db.update(TABLE_PICTURES, values, KEY_ID + " = ?", new String[] { String.valueOf(picture.getId()) });
+    }
+
     /**
      * DELETE OPERATIONS
      */
@@ -231,6 +301,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, KEY_ID + " = ?",
                 new String[] {String.valueOf(user_id)});
+    }
+
+    public void deletePicture(long picture_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PICTURES, KEY_ID + " = ?",
+                new String[] { String.valueOf(picture_id) });
     }
 
 

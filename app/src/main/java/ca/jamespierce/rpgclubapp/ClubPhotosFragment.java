@@ -9,16 +9,22 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 import static ca.jamespierce.rpgclubapp.MainActivity.fab;
@@ -33,17 +39,18 @@ import static ca.jamespierce.rpgclubapp.MainActivity.fab;
  * create an instance of this fragment.
  */
 public class ClubPhotosFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private static final int CAMERA_INTENT = 1;
     private String imageLocation;
+    RecyclerView rvPictures;
+
+    public PicturesAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,7 +66,6 @@ public class ClubPhotosFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ClubPhotosFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ClubPhotosFragment newInstance(String param1, String param2) {
         ClubPhotosFragment fragment = new ClubPhotosFragment();
         Bundle args = new Bundle();
@@ -84,6 +90,26 @@ public class ClubPhotosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_club_photos, container, false);
 
+
+
+        DatabaseHandler db = new DatabaseHandler(getContext());
+
+        // Programmatically link recyclerview
+        rvPictures = (RecyclerView) view.findViewById(R.id.clubPictureList);
+        final ArrayList<Picture> pictureList = db.getAllPictures();
+
+        db.closeDB();
+
+        adapter = new PicturesAdapter(this.getContext(), pictureList);
+
+        // Attach the adapter to the recyclerview to populate items
+        rvPictures.setAdapter(adapter);
+
+        // Set the layoutManager to position the items
+
+        rvPictures.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+
         fab.show();
 
         fab.setImageResource(R.drawable.ic_add_a_photo_black_24dp);
@@ -103,12 +129,87 @@ public class ClubPhotosFragment extends Fragment {
                     startActivityForResult(i, CAMERA_INTENT);
                 }
 
-
-
             }
         });
 
         return view;
+    }
+
+    /**
+     * description This is the adapter class I use for the messages and the RecyclerView.
+     */
+    public class PicturesAdapter extends
+            RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            // Declare variables for the items to display in each row
+            public CardView picture;
+
+            // Constructor for the view
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                picture = (CardView) itemView.findViewById(R.id.clubPhotoFrame);
+            }
+        }
+
+        // Creates a list to store the all of the messages
+        private List<Picture> mPictures;
+        private Context mContext;
+
+        // Pass the array of messages
+        public PicturesAdapter(Context context, List<Picture> pictures) {
+            mPictures = pictures;
+            mContext = context;
+        }
+
+        /**
+         *
+         * @return mContext - Returns the context when needed
+         */
+        private Context getContext() {
+            return mContext;
+        }
+
+
+        @Override
+        public PicturesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            Context context = parent.getContext();
+            LayoutInflater inflater = LayoutInflater.from(context);
+
+            View contactView = inflater.inflate(R.layout.picture_view, parent, false);
+
+            PicturesAdapter.ViewHolder viewHolder = new PicturesAdapter.ViewHolder(contactView);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(PicturesAdapter.ViewHolder viewHolder, int position) {
+
+            DatabaseHandler db = new DatabaseHandler(getContext());
+            Picture picture = db.getPicture(position);
+            db.closeDB();
+
+
+            // This will set the id of the image in each cardview to be displayed
+            CardView pictureHolder = viewHolder.picture;
+
+            // This is a copy of code used in class to programmatically add an imageView to the app
+            Bitmap image = BitmapFactory.decodeFile(picture.getResource());
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageBitmap(image);
+            imageView.setAdjustViewBounds(true);
+            pictureHolder.addView(imageView);
+
+            //TODO figure out where to put the adapter.notifyDataSetUpdated() method.
+            // It is currently global so that I can put it anywhere, as I could not get it to work inside the FAB event listener.
+        }
+
+        // Returns the total count of items in the list
+        @Override
+        public int getItemCount() {
+            return mPictures.size();
+        }
     }
 
     @Override
@@ -125,20 +226,16 @@ public class ClubPhotosFragment extends Fragment {
              * Add the photo to the database
              */
             DatabaseHandler db = new DatabaseHandler(getContext());
-            //TODO: UNCOMMENT ALL OF THIS
-//            int picID = db.addPicture(new Picture(imageLocation));
-//            if(picID != -1){
-//                // This should be removed. Should not require this as we are only adding the image to one table.
-//                // Can use this to produce a toast message though.
-////                Location location = (Location) spin.getSelectedItem();
-////                db.addImageLocation(picID, location.getId());
-//                Toast.makeText(getActivity(), "Photo Added",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//            else{
-//                Toast.makeText(getActivity(), "Photo Not Added",
-//                        Toast.LENGTH_LONG).show();
-//            }
+
+            int picID = db.addPicture(new Picture(imageLocation));
+            if(picID != -1){
+                Toast.makeText(getActivity(), "Photo Added",
+                        Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(getActivity(), "Photo Not Added",
+                        Toast.LENGTH_LONG).show();
+            }
 
             /*
              * Refer to the Chat window to see how to refresh list content.
@@ -177,7 +274,6 @@ public class ClubPhotosFragment extends Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -212,7 +308,6 @@ public class ClubPhotosFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

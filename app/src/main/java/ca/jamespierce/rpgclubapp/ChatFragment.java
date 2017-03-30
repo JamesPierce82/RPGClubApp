@@ -108,7 +108,9 @@ public class ChatFragment extends Fragment {
         fab.hide();
 
         // Attempt to move content up when opening the EditText
-        // This does not work all the time. No idea why.
+        // Figured out that this IS WORKING. Proof is that the edit text moves with the keyboard. The issue is that ONLY the editText is moving.
+        // May need to figure out how to lock the RecyclerView to the top of the EditText to force it to move, or look into moving to specific
+        // items upon opening hte keyboard(This is bad practice).
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         messageContent = (EditText) view.findViewById(R.id.editMessage);
@@ -149,15 +151,104 @@ public class ChatFragment extends Fragment {
 
                 // This will clear the editText
                 messageContent.setText("");
+                // THis forces the app to skip to the newest message after sending a message.
+                rvMessages.scrollToPosition(adapter.getItemCount() -1);
             }
         });
 
-
+        // This should force the app to skip to the bottom of the chat upon loading.
+        rvMessages.scrollToPosition(adapter.getItemCount() -1);
         return view;
     }
 
+// Utilizing a guide found on https://guides.codepath.com/android/using-the-recyclerview for RecyclerView
+// Need a reycler view because of the content in the list
+
+    /**
+     * description This is the adapter class I use for the messages and the RecyclerView.
+     */
+    public class MessagesAdapter extends
+            RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            // Declare variables for the items to display in each row
+            public TextView name;
+            public TextView time;
+            public TextView message;
+            public ImageView avatar;
+
+            // Constructor for the view
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                name = (TextView) itemView.findViewById(R.id.name);
+                time = (TextView) itemView.findViewById(R.id.time);
+                message = (TextView) itemView.findViewById(R.id.message);
+                avatar = (ImageView) itemView.findViewById(R.id.avatar);
+            }
+        }
+
+        // Creates a list to store the all of the messages
+        private List<Message> mMessages;
+        private Context mContext;
+
+        // Pass the array of messages
+        public MessagesAdapter(Context context, List<Message> messages) {
+            mMessages = messages;
+            mContext = context;
+        }
+
+        /**
+         *
+         * @return mContext - Returns the context when needed
+         */
+        private Context getContext() {
+            return mContext;
+        }
 
 
+        @Override
+        public MessagesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            Context context = parent.getContext();
+            LayoutInflater inflater = LayoutInflater.from(context);
+
+            View contactView = inflater.inflate(R.layout.message_view, parent, false);
+
+            ViewHolder viewHolder = new ViewHolder(contactView);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(MessagesAdapter.ViewHolder viewHolder, int position) {
+            // Gets the item from the current position
+            Message message = mMessages.get(position);
+            DatabaseHandler db = new DatabaseHandler(getContext());
+
+            // Set the Name for each message based on the userID of the current message
+            TextView name = viewHolder.name;
+
+            // This sets it to a string of the user id.
+            name.setText((db.getUser(message.getUser_id()).getName()));
+
+            // Set the time sent of the message
+            TextView time = viewHolder.time;
+            time.setText(message.getTimeSent());
+
+            // Set the content of the message
+            TextView messageContent = viewHolder.message;
+            messageContent.setText(message.getContent());
+
+            // Sets the avatar using the resource id of the drawable image stored in the message
+            ImageView avatar = viewHolder.avatar;
+            avatar.setImageResource(db.getUser(message.getUser_id()).getAvatar());
+        }
+
+        // Returns the total count of items in the list
+        @Override
+        public int getItemCount() {
+            return mMessages.size();
+        }
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
