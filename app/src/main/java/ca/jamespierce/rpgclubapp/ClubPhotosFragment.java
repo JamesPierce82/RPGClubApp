@@ -91,26 +91,7 @@ public class ClubPhotosFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_club_photos, container, false);
 
-        fab.show();
 
-        fab.setImageResource(R.drawable.ic_add_a_photo_black_24dp);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File picture = null;
-                try{
-                    picture = createImage();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-                Intent i = new Intent();
-                i.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picture));
-                if(i.resolveActivity(getActivity().getPackageManager()) != null){
-                    startActivityForResult(i, CAMERA_INTENT);
-                }
-            }
-        });
 
         DatabaseHandler db = new DatabaseHandler(getContext());
 
@@ -130,7 +111,27 @@ public class ClubPhotosFragment extends Fragment {
         rvPictures.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
+        fab.show();
 
+        fab.setImageResource(R.drawable.ic_add_a_photo_black_24dp);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File picture = null;
+                try{
+                    picture = createImage();
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+                Intent i = new Intent();
+                i.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picture));
+                if(i.resolveActivity(getActivity().getPackageManager()) != null){
+                    startActivityForResult(i, CAMERA_INTENT);
+                }
+
+            }
+        });
 
         return view;
     }
@@ -202,7 +203,6 @@ public class ClubPhotosFragment extends Fragment {
             imageView.setImageBitmap(image);
             imageView.setAdjustViewBounds(true);
             pictureHolder.addView(imageView);
-
 
 
         }
