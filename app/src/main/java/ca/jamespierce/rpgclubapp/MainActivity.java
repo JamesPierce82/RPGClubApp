@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity
                     GameFragment.OnFragmentInteractionListener,
                     GamesFragment.OnFragmentInteractionListener,
                     MemberFragment.OnFragmentInteractionListener,
-                    EquipmentFragment.OnFragmentInteractionListener{
+                    EquipmentFragment.OnFragmentInteractionListener,
+                    ClubPhotosFragment.OnFragmentInteractionListener{
 
     FragmentManager fm = getSupportFragmentManager();
     public static FloatingActionButton fab;
@@ -120,7 +121,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_chat) {
             tran.replace(R.id.content_main, new ChatFragment());
             tran.commit();
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_photos) {
+            tran.replace(R.id.content_main, new ClubPhotosFragment());
+            tran.commit();
+        }else if (id == R.id.nav_about) {
             tran.replace(R.id.content_main, new ClubInfoFragment());
             tran.commit();
         } else if (id == R.id.nav_call) {
@@ -137,6 +141,7 @@ public class MainActivity extends AppCompatActivity
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
             }
+            // This is used to add new entries to the database after nuking it. Keep this code in place.
         } else if (id == R.id.nav_databaseSetup) {
             // Add all entries to the database.
             DatabaseHandler db = new DatabaseHandler(getBaseContext());
@@ -148,6 +153,7 @@ public class MainActivity extends AppCompatActivity
             db.addUser(new User("Emily", R.drawable.emily));
             db.addUser(new User("George", R.drawable.george));
             db.addUser(new User("Sally", R.drawable.sally));
+
 
             // Add all the messages required for the chat client to the Messages table
             db.addMessage(new Message("Jan 10, 2017 1:03pm", "Hey guys, welcome to the app! We can communicate in here about what we're doing each week, or just whatever.", 2));

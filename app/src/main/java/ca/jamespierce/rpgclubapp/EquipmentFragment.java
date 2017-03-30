@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static ca.jamespierce.rpgclubapp.MainActivity.fab;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,6 +84,8 @@ public class EquipmentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
 
+
+        fab.hide();
         final ArrayList<Equipment> equipmentList = new ArrayList<Equipment>();
 
         list = (ListView) view.findViewById(R.id.equipmentListView);
